@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan 2026 — Family Trip Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a1614;--paper:#f5f0e8;--red:#b83232;--gold:#9a7230;--mist:#e2d8c8;--dim:#8a7e74;--white:#ffffff;--green:#2d6a3f;--orange:#c45c1a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;padding-bottom:80px;font-size:15px;zoom:1.12;}
+.hero{background:var(--ink);padding:32px 20px 24px;position:relative;overflow:hidden;}
+.hero::after{content:'旅';position:absolute;right:-8px;top:-16px;font-family:'Shippori Mincho',serif;font-size:160px;font-weight:800;color:rgba(255,255,255,0.04);line-height:1;pointer-events:none;}
+.hero-eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
+.hero h1{font-family:'Shippori Mincho',serif;font-size:40px;font-weight:800;color:var(--white);line-height:1;margin-bottom:6px;}
+.hero-meta{font-size:13px;color:rgba(255,255,255,0.4);letter-spacing:0.5px;margin-bottom:18px;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);font-size:11px;padding:4px 10px;border-radius:20px;}
+.chip.alert{background:rgba(184,50,50,0.15);border-color:rgba(184,50,50,0.4);color:#e07070;}
+.chip.ok{background:rgba(45,106,63,0.2);border-color:rgba(45,106,63,0.4);color:#7bc48a;}
+.tab-nav{display:flex;background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.tab-nav::-webkit-scrollbar{display:none;}
+.tab-btn{flex-shrink:0;padding:11px 16px;background:none;border:none;color:rgba(255,255,255,0.35);font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all 0.2s;}
+.tab-btn.active{color:var(--white);border-bottom-color:var(--red);}
+.view{display:none;}.view.active{display:block;}
+.section-lbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);padding:20px 16px 8px;}
+.timeline{margin:0 12px;border-radius:10px;overflow:hidden;border:1px solid var(--mist);background:var(--white);}
+.tl-row{display:flex;align-items:stretch;border-bottom:1px solid var(--mist);}
+.tl-row:last-child{border-bottom:none;}
+.tl-date{width:54px;flex-shrink:0;background:var(--mist);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 4px;}
+.tl-dow{font-size:11px;color:var(--dim);}
+.tl-d{font-family:'Shippori Mincho',serif;font-size:22px;font-weight:600;color:var(--ink);line-height:1.1;}
+.tl-mon{font-size:11px;color:var(--dim);}
+.tl-content{flex:1;padding:10px 12px;}
+.tl-city{font-size:11px;color:var(--red);letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;}
+.tl-note{font-size:14px;color:var(--ink);line-height:1.3;}
+.tl-sub{font-size:12px;color:var(--dim);margin-top:2px;line-height:1.4;}
+.tl-badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:10px;margin-top:4px;font-weight:500;}
+.b-ok{background:rgba(45,106,63,0.12);color:var(--green);}
+.b-alert{background:rgba(184,50,50,0.1);color:var(--red);}
+.b-transit{background:rgba(154,114,48,0.12);color:var(--gold);}
+.b-tbd{background:rgba(138,126,116,0.12);color:var(--dim);}
+.tl-row.transit{background:rgba(154,114,48,0.04);}
+.tl-row.depart{background:rgba(184,50,50,0.04);}
+.tl-row.highlight{background:rgba(45,106,63,0.04);}
+.cards{padding:0 12px;display:flex;flex-direction:column;gap:8px;}
+.card{background:var(--white);border:1px solid var(--mist);border-radius:10px;overflow:hidden;}
+.card-hd{display:flex;align-items:center;gap:10px;padding:13px 14px;cursor:pointer;}
+.card-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.card-icon.must{background:#fef3f2;}.card-icon.food{background:#f0faf4;}.card-icon.info{background:#f0f4ff;}.card-icon.alert{background:#fff8f0;}.card-icon.train{background:#f0f8ff;}
+.card-text{flex:1;}
+.card-title{font-size:14px;font-weight:500;color:var(--ink);}
+.card-sub{font-size:12px;color:var(--dim);margin-top:1px;}
+.card-badge{font-size:9px;letter-spacing:0.8px;text-transform:uppercase;padding:3px 9px;border-radius:10px;font-weight:500;flex-shrink:0;}
+.badge-must{background:#fef3f2;color:var(--red);}.badge-book{background:#fff3e0;color:var(--orange);}.badge-ok{background:#f0faf4;color:var(--green);}.badge-tbd{background:#f5f5f0;color:var(--dim);}
+.card-body{display:none;padding:0 14px 14px;border-top:1px solid var(--mist);}
+.card-body.open{display:block;}
+.card-body p{font-size:13px;line-height:1.6;color:#4a4040;padding-top:10px;}
+.card-links{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
+.card-link{font-size:12px;padding:6px 13px;border-radius:16px;text-decoration:none;font-weight:500;}
+.link-dark{background:var(--ink);color:var(--white);}.link-light{background:var(--mist);color:var(--ink);}
+.city-hdr{padding:20px 16px 12px;border-bottom:1px solid var(--mist);}
+.city-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:4px;}
+.city-name{font-family:'Shippori Mincho',serif;font-size:28px;font-weight:600;color:#7a6a5f;}
+.city-meta{font-size:12px;color:var(--dim);margin-top:2px;}
+.tips-box{margin:12px 12px 0;background:var(--ink);border-radius:10px;padding:14px;}
+.tips-box h4{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
+.tips-box ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.tips-box li{font-size:12px;color:rgba(245,240,232,0.75);padding-left:12px;position:relative;line-height:1.5;}
+.tips-box li::before{content:'—';position:absolute;left:0;color:var(--red);}
+.detail-table{margin:0 12px;border:1px solid var(--mist);border-radius:10px;overflow:hidden;background:var(--white);}
+.dt-row{display:flex;flex-direction:column;border-bottom:1px solid var(--mist);}
+.dt-row:last-child{border-bottom:none;}
+.dt-main{display:flex;min-height:40px;}
+.dt-time{width:72px;flex-shrink:0;background:rgba(226,216,200,0.3);padding:9px 6px;font-size:11px;font-weight:500;color:var(--ink);text-align:center;display:flex;align-items:center;justify-content:center;line-height:1.3;}
+.dt-text{flex:1;padding:9px 11px;font-size:13px;color:var(--ink);line-height:1.7;}
+.act-btn{display:inline;background:none;border:1px solid var(--mist);border-radius:20px;padding:2px 9px;font-size:11px;color:var(--red);cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;margin-left:4px;white-space:nowrap;vertical-align:middle;}
+.act-btn:active{background:var(--mist);}
+.dt-act-detail{display:none;padding:9px 11px 11px;font-size:13px;color:#4a4040;line-height:1.6;background:rgba(245,240,232,0.7);border-top:1px solid var(--mist);}
+.dt-act-detail.open{display:block;}
+.dt-act-detail a.learn-more{color:var(--red);font-size:12px;text-decoration:none;font-weight:500;}
+.dt-act-links{display:flex;justify-content:space-between;align-items:center;margin-top:8px;}
+.dt-row.reminder .dt-main{background:rgba(184,50,50,0.05);}
+.dt-row.reminder .dt-time{background:rgba(184,50,50,0.15);color:#c0392b;font-weight:600;}
+.city-section{display:none;}.city-section.active{display:block;}
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:var(--ink);display:flex;border-top:1px solid rgba(255,255,255,0.07);z-index:100;}
+.bot-btn{flex:1;padding:9px 4px 13px;background:none;border:none;color:rgba(255,255,255,0.3);font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:color 0.2s;}
+.bot-btn.active{color:var(--white);}
+.bot-icon{font-size:20px;}
+.alert-bar{background:#5a1010;border-left:3px solid #ff6b6b;margin:12px 12px 0;border-radius:0 8px 8px 0;padding:11px 13px;}
+.alert-bar .at{font-size:12px;font-weight:600;color:#ff9a9a;letter-spacing:0.5px;margin-bottom:3px;}
+.alert-bar .ab{font-size:12px;color:#ffd0d0;line-height:1.6;}
+.alert-bar a{color:#ffaaaa;text-decoration:underline;}
+.ok-bar{background:#0a2e14;border-left:3px solid #4caf50;margin:12px 12px 0;border-radius:0 8px 8px 0;padding:11px 13px;}
+.ok-bar .ot{font-size:12px;font-weight:600;color:#7ee887;letter-spacing:0.5px;margin-bottom:3px;}
+.ok-bar .ob{font-size:12px;color:#b8f0c0;line-height:1.6;}
+.train-table{margin:0 12px;border:1px solid var(--mist);border-radius:10px;overflow:hidden;background:var(--white);}
+.tr-row{display:flex;border-bottom:1px solid var(--mist);}
+.tr-row:last-child{border-bottom:none;}
+.tr-label{width:82px;flex-shrink:0;background:rgba(226,216,200,0.3);padding:9px 6px;font-size:10px;font-weight:500;color:var(--ink);text-align:center;display:flex;align-items:center;justify-content:center;line-height:1.3;}
+.tr-content{flex:1;padding:9px 11px;font-size:13px;color:var(--ink);line-height:1.5;}
+.tr-row.booked .tr-label{background:rgba(45,106,63,0.12);color:var(--green);}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-eyebrow">Family Travel Guide</div>
+  <h1>Japan 2026</h1>
+  <div class="hero-meta">4 Travellers · 15 Nights · May 23 – Jun 6</div>
+  <div class="hero-chips">
+    <span class="chip">✈ May 22 ATL → NRT</span>
+    <span class="chip">Tokyo · Kyoto · Takayama · Hakone</span>
+    <span class="chip ok">✓ teamLab Jun 4</span>
+    <span class="chip ok">✓ Florilège Jun 3</span>
+    <span class="chip ok">✓ Sumo May 24</span>
+    <span class="chip ok">✓ All trains booked</span>
+    <span class="chip alert">! Sushi workshop Jun 5 — book</span>
+    <span class="chip alert">! May 24 dinner — TBD</span>
+  </div>
+</div>
+
+<!-- SCHEDULE -->
+<div class="view active" id="view-schedule">
+  <div class="section-lbl">Full Itinerary · May 22 – Jun 6, 2026</div>
+  <div class="timeline">
+    <div class="tl-row transit"><div class="tl-date"><div class="tl-dow">Fri</div><div class="tl-d">22</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Departure</div><div class="tl-note">ATL 6:30 AM → SFO → Tokyo NRT</div><div class="tl-sub">Cross International Date Line · arrive next day</div></div></div>
+    <div class="tl-row"><div class="tl-date"><div class="tl-dow">Sat</div><div class="tl-d">23</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Tokyo I · Arrive</div><div class="tl-note">Private transfer NRT → Asakusa View Hotel</div><div class="tl-sub">Observation Terrace (open til 8pm) · 7-Eleven dinner</div><span class="tl-badge b-alert">Buy Spacia Kinu tix at Tobu Asakusa Station!</span></div></div>
+    <div class="tl-row"><div class="tl-date"><div class="tl-dow">Sun</div><div class="tl-d">24</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Tokyo I</div><div class="tl-note">Senso-ji · Akihabara · Grand Sumo Final Day!</div><div class="tl-sub">Morning temple · anime district · sumo championship · chanko nabe dinner</div><span class="tl-badge b-ok">✓ Sumo confirmed</span></div></div>
+    <div class="tl-row"><div class="tl-date"><div class="tl-dow">Mon</div><div class="tl-d">25</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Tokyo I · Day Trip</div><div class="tl-note">Edo Wonderland Nikko</div><div class="tl-sub">Depart Tobu Asakusa 7:30 AM · back ~5:30 PM · casual local dinner</div><span class="tl-badge b-alert">🧳 Ship bags to Kyoto tonight</span></div></div>
+    <div class="tl-row transit"><div class="tl-date"><div class="tl-dow">Tue</div><div class="tl-d">26</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">→ Kyoto</div><div class="tl-note">Nozomi 116 · 9:30 AM → Kyoto ~11:10 AM</div><div class="tl-sub">Check in Ace Hotel · Nishiki Market · casual dinner</div><span class="tl-badge b-transit">✓ Booked</span></div></div>
+    <div class="tl-row"><div class="tl-date"><div class="tl-dow">Wed</div><div class="tl-d">27</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Kyoto</div><div class="tl-note">Fushimi Inari · Gion at dusk</div><div class="tl-sub">Early morning red torii gates · Pontocho dinner</div></div></div>
+    <div class="tl-row"><div class="tl-date"><div class="tl-dow">Thu</div><div class="tl-d">28</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Kyoto</div><div class="tl-note">Arashiyama · Tenryu-ji Garden</div><div class="tl-sub">Bamboo grove · serene pond temple · afternoon free</div></div></div>
+    <div class="tl-row"><div class="tl-date"><div class="tl-dow">Fri</div><div class="tl-d">29</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Kyoto → Nara → Osaka</div><div class="tl-note">Nara deer park · Osaka Dotonbori · Kuromon · Castle · Shinsekai</div><div class="tl-sub">Kintetsu Express 8:00 AM · full day · kushikatsu dinner · back ~9 PM</div><span class="tl-badge b-alert">🧳 Ship bags to Takayama tonight</span></div></div>
+    <div class="tl-row transit"><div class="tl-date"><div class="tl-dow">Sat</div><div class="tl-d">30</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">→ Takayama</div><div class="tl-note">Nozomi 9:30 AM → Nagoya · Hida 7 10:48 AM → Takayama 1:12 PM</div><div class="tl-sub">Check in Machia Hotel · Sanmachi Suji old town</div><span class="tl-badge b-transit">✓ Booked</span></div></div>
+    <div class="tl-row"><div class="tl-date"><div class="tl-dow">Sun</div><div class="tl-d">31</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Takayama</div><div class="tl-note">Shirakawa-go day trip · Alpine scenery</div><div class="tl-sub">UNESCO thatched villages · optional hiking</div><span class="tl-badge b-alert">🧳 Ship bags to Hakone tonight</span></div></div>
+    <div class="tl-row transit"><div class="tl-date"><div class="tl-dow">Mon</div><div class="tl-d">1</div><div class="tl-mon">Jun</div></div><div class="tl-content"><div class="tl-city">→ Hakone</div><div class="tl-note">Hida 9:36 AM → Nagoya 12:04 PM · Kodama 12:38 PM → Odawara 2:42 PM</div><div class="tl-sub">Buy Hakone Free Pass · Tozan Railway to Gora · Hotel Indigo · Onsen</div><span class="tl-badge b-transit">✓ Booked</span></div></div>
+    <div class="tl-row"><div class="tl-date"><div class="tl-dow">Tue</div><div class="tl-d">2</div><div class="tl-mon">Jun</div></div><div class="tl-content"><div class="tl-city">Hakone</div><div class="tl-note">Owakudani Ropeway · Onsen · Relax</div><div class="tl-sub">Volcanic valley · Fuji view attempt</div><span class="tl-badge b-alert">🧳 Ship bags to Tokyo tonight</span></div></div>
+    <div class="tl-row transit"><div class="tl-date"><div class="tl-dow">Wed</div><div class="tl-d">3</div><div class="tl-mon">Jun</div></div><div class="tl-content"><div class="tl-city">→ Tokyo II</div><div class="tl-note">Kodama 9:14 AM → Tokyo 9:48 AM · Imperial Palace · Florilège 6 PM ★★</div><div class="tl-sub">Check in Tokyo Edition Toranomon · Florilège confirmed</div><span class="tl-badge b-ok">✓ All confirmed</span></div></div>
+    <div class="tl-row highlight"><div class="tl-date"><div class="tl-dow">Thu</div><div class="tl-d">4</div><div class="tl-mon">Jun</div></div><div class="tl-content"><div class="tl-city">Tokyo II ⭐</div><div class="tl-note">teamLab 9:30 AM · Harajuku · Shibuya Sky · Shinjuku</div><div class="tl-sub">Vegan Ramen UZU · boba · sunset rooftop · neon streets</div><span class="tl-badge b-ok">✓ teamLab confirmed</span></div></div>
+    <div class="tl-row"><div class="tl-date"><div class="tl-dow">Fri</div><div class="tl-d">5</div><div class="tl-mon">Jun</div></div><div class="tl-content"><div class="tl-city">Tokyo II</div><div class="tl-note">Tsukiji sushi workshop · Ginza shopping · casual dinner</div><div class="tl-sub">Morning workshop + lunch · Mikimoto · izakaya dinner</div><span class="tl-badge b-alert">! Sushi workshop — book</span></div></div>
+    <div class="tl-row depart"><div class="tl-date"><div class="tl-dow">Sat</div><div class="tl-d">6</div><div class="tl-mon">Jun</div></div><div class="tl-content"><div class="tl-city">Departure</div><div class="tl-note">HND 10:20 AM → IAD → ATL 2:34 PM</div><div class="tl-sub">Leave hotel 7:30 AM · Jumbo Taxi to HND · IAD layover 2h 30m</div></div></div>
+  </div>
+</div>
+
+<!-- EXPLORE -->
+<div class="view" id="view-explore">
+  <div class="tab-nav" id="cityNav" style="background:#f0ebe0;border-top:1px solid var(--mist);">
+    <button class="tab-btn active" style="color:var(--ink)" onclick="showCity('tokyo1',this)">Tokyo I</button>
+    <button class="tab-btn" style="color:var(--dim)" onclick="showCity('kyoto',this)">Kyoto</button>
+    <button class="tab-btn" style="color:var(--dim)" onclick="showCity('takayama',this)">Takayama</button>
+    <button class="tab-btn" style="color:var(--dim)" onclick="showCity('hakone',this)">Hakone</button>
+    <button class="tab-btn" style="color:var(--dim)" onclick="showCity('tokyo2',this)">Tokyo II</button>
+  </div>
+
+  <!-- TOKYO I -->
+  <div class="city-section active" id="city-tokyo1">
+    <div class="city-hdr"><div style="display:flex;justify-content:space-between;align-items:flex-start;"><div><div class="city-tag">May 23–26 · 3 nights</div><div class="city-name">Tokyo — Asakusa</div><div class="city-meta">Asakusa View Hotel Annex Roku · Free lounge 3–10pm · Skytree views</div></div><a href="#" onclick="window.location.href='https://maps.google.com/?q=Asakusa+Tokyo';return false;" class="learn-more" style="font-size:12px;">📍 Map</a></div></div>
+    <div class="section-lbl">Saturday May 23 · First Night</div>
+    <div class="detail-table">
+      <div class="dt-row reminder"><div class="dt-main"><div class="dt-time">On Arrival</div><div class="dt-text">⚠️ Buy Spacia Kinu tickets at Tobu Asakusa Station (5 min walk) — reserved seats both ways for Mon May 25</div></div></div>
+      <div class="dt-row reminder"><div class="dt-main"><div class="dt-time">On Arrival</div><div class="dt-text">⚠️ Get physical Suica card for Nikki at station vending machine · load ¥5,000</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">~6:00 PM</div><div class="dt-text">Private transfer arrives hotel · check in · drop bags · freshen up</div></div></div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">~6:30 PM</div><div class="dt-text"><strong>Asakusa Observation Terrace</strong> · FREE · open til 8pm · 5 min walk <button class="act-btn" onclick="toggleAct('a23a')">🗼 Details</button></div></div>
+        <div class="dt-act-detail" id="a23a">FREE rooftop at Asakusa Culture Tourist Information Center. Open til 8:00 PM. Stunning bird's-eye view of Senso-ji Temple, Nakamise Street, and Tokyo Skytree lit up at night. Take the elevator to the 8th floor. 5 min walk from hotel — perfect first impression of Tokyo.<div class="dt-act-links"><span></span><a href="#" onclick="window.location.href='https://maps.google.com/?q=Asakusa+Culture+Tourist+Information+Center+Tokyo';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">~7:00 PM</div><div class="dt-text"><strong>7-Eleven dinner</strong> · Asakusa 2-chome · 5 min walk from terrace <button class="act-btn" onclick="toggleAct('a23b')">🏪 Details</button></div></div>
+        <div class="dt-act-detail" id="a23b">Classic Japan convenience store — fresh onigiri, sandwiches, hot foods, desserts. No beef for wife + boys, no shrimp for wife. Widely considered better than most western convenience stores. A quintessential Japan experience on your first night.<div class="dt-act-links"><span></span><a href="#" onclick="window.location.href='https://maps.google.com/?q=7-Eleven+Asakusa+2-chome+Tokyo';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">Note</div><div class="dt-text">Hotel has free lounge on 10th floor 3–10pm with Skytree views — great backup if terrace is closed or you're too tired</div></div></div>
+    </div>
+
+    <div class="section-lbl">Sunday May 24 · Sumo Day!</div>
+    <div class="detail-table">
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">7:00 AM</div><div class="dt-text">Wake up · breakfast · jet lag works in your favour — you'll be up naturally</div></div></div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">7:30 AM</div><div class="dt-text"><strong>Senso-ji Temple</strong> · 5 min walk · go early before crowds <button class="act-btn" onclick="toggleAct('a24a')">⛩️ Details</button></div></div>
+        <div class="dt-act-detail" id="a24a">Tokyo's oldest temple, founded in 645 AD. The iconic Kaminarimon (Thunder Gate) with its massive red lantern leads to Nakamise Street — a covered arcade of souvenir stalls. The main hall enshrines a golden image of Kannon, the goddess of mercy. Go before 8 AM — serene and misty before the crowds arrive.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e3001.html" class="learn-more" target="_blank">Japan Guide — Senso-ji</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Senso-ji+Temple+Asakusa+Tokyo';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">9:00 AM</div><div class="dt-text"><strong>Akihabara</strong> · 15 min by subway · electronics, anime, gaming · allow 2–3 hrs <button class="act-btn" onclick="toggleAct('a24b')">🎮 Details</button><a href="#" onclick="window.location.href='https://maps.google.com/?saddr=Asakusa+Station+Tokyo&daddr=Akihabara+Station+Tokyo&dirflg=r';return false;" class="learn-more" style="margin-left:4px;">🚆 Transit times</a></div></div>
+        <div class="dt-act-detail" id="a24b">Tokyo's legendary electric town — multi-floor stores packed with anime merchandise, gaming gear, electronics, and vintage games. Nikki's pick! Multi-floor Yodobashi Camera, Animate, and dozens of independent stores. The area earned its reputation as Japan's otaku epicentre after WWII.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e3003.html" class="learn-more" target="_blank">Japan Guide — Akihabara</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Akihabara+Electric+Town+Tokyo';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">12:00 PM</div><div class="dt-text">Lunch in Akihabara</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">~1:30 PM</div><div class="dt-text">Head to Ryogoku (10 min by train)<a href="#" onclick="window.location.href='https://maps.google.com/?saddr=Akihabara+Station+Tokyo&daddr=Ryogoku+Station+Tokyo&dirflg=r';return false;" class="learn-more" style="margin-left:4px;">🚆 Transit times</a></div></div></div>
+      <div class="dt-row reminder"><div class="dt-main"><div class="dt-time">Meetup</div><div class="dt-text">⚠️ Look for TNK placard · Edo Noren entrance · Ryogoku Station West Exit · confirm time with GetYourGuide</div></div></div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">3:40 PM</div><div class="dt-text"><strong>Grand Sumo Tournament — Final Day!</strong> · Top division bouts · championship <button class="act-btn" onclick="toggleAct('a24c')">🏆 Details</button></div></div>
+        <div class="dt-act-detail" id="a24c">Sumo is Japan's national sport with roots going back over 1,500 years. The May Tournament (Natsu Basho) is one of six annual grand tournaments. The final day is the most dramatic — the championship is decided in the last few bouts. The Yokozuna (grand champion) performs a ceremonial bow dance. Electric atmosphere. ✓ GetYourGuide tour booked.<div class="dt-act-links"><span></span><a href="#" onclick="window.location.href='https://maps.google.com/?q=Ryogoku+Kokugikan+Sumo+Hall+Tokyo';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">6:00 PM</div><div class="dt-text">Tournament ends · champion crowned 🏆</div></div></div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">Evening</div><div class="dt-text"><strong>Chanko nabe dinner</strong> · Ryogoku · sumo hot pot · walk-in <button class="act-btn" onclick="toggleAct('a24d')">🍲 Details</button></div></div>
+        <div class="dt-act-detail" id="a24d">Chanko nabe is the protein-rich hot pot stew that sumo wrestlers eat daily — rich broth loaded with chicken, tofu, vegetables, and noodles. Many former wrestlers run chanko restaurants in Ryogoku. No beef — naturally chicken and tofu-based. No reservation needed. Perfect post-sumo dinner.<div class="dt-act-links"><span></span><a href="#" onclick="window.location.href='https://maps.google.com/?q=Chanko+Kawasaki+Ryogoku+Tokyo';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+    </div>
+
+    <div class="section-lbl">Monday May 25 · Edo Wonderland Day</div>
+    <div class="detail-table">
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">7:00 AM</div><div class="dt-text">Leave hotel · walk to Tobu Asakusa Station (5 min)</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">7:30 AM</div><div class="dt-text"><strong>Spacia Kinu Limited Express</strong> · reserved seats · ~2 hrs · ~¥2,700pp</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">9:30 AM</div><div class="dt-text">Arrive Kinugawa-Onsen · Tobu bus to Edo Wonderland (20 min · ¥490)</div></div></div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">10:00 AM</div><div class="dt-text"><strong>Edo Wonderland opens</strong> · grab costumes immediately · ✓ KKday tickets <button class="act-btn" onclick="toggleAct('a25a')">⚔️ About</button><button class="act-btn" onclick="toggleAct('a25b')">🥷 Activities</button></div></div>
+        <div class="dt-act-detail" id="a25a">A full-scale recreation of an Edo-period town (1603–1868) — the era of samurai, ninja, and shoguns. Every staff member stays in character. Five zones: Highway Route, Inn Town, Merchant Town, Samurai Residence, and Ninja Village. Grab costumes on arrival — ninja, samurai, princess, geisha. Open 9am–5pm. ✓ KKday tickets booked.<div class="dt-act-links"><a href="https://www.edowonderland.net/en/" class="learn-more" target="_blank">Edo Wonderland Official Site</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Edo+Wonderland+Nikko+Edomura+Tochigi';return false;" class="learn-more">📍 Google Maps</a></div></div>
+        <div class="dt-act-detail" id="a25b">Must-do: Grand Ninja Theatre (acrobatic sword fights), Oiran Parade (~noon — confirm time on arrival), samurai sword lessons, shuriken throwing, archery, ninja trick maze. Costume return by 4pm in summer. Check the show schedule at the entrance and plan your day around it.<div class="dt-act-links"><span></span><a href="#" onclick="window.location.href='https://maps.google.com/?q=Tobu+Asakusa+Station+Tokyo';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">10:30–3 PM</div><div class="dt-text">Ninja shows · Oiran Parade · sword lessons · shuriken · archery · ninja maze</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">3:00 PM</div><div class="dt-text">Bus back to Kinugawa-Onsen · Spacia Kinu back to Asakusa (~2 hrs)</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">5:30 PM</div><div class="dt-text">Back at hotel · casual local dinner nearby · early night</div></div></div>
+      <div class="dt-row reminder"><div class="dt-main"><div class="dt-time">Tonight!</div><div class="dt-text">🧳 Ship 2 large suitcases to Ace Hotel Kyoto at hotel front desk before 9pm · next-day delivery</div></div></div>
+    </div>
+    <div class="tips-box" style="margin-top:12px;margin-bottom:8px"><h4>Tokyo I Notes</h4><ul>
+      <li>Senso-ji, Akihabara, Ryogoku all on the same eastern Tokyo train line — no backtracking</li>
+      <li>Sumo final day is the most electric day of the whole tournament</li>
+      <li>Observation Terrace closes at 8:00 PM — plan arrival by 6:30 PM</li>
+      <li>Oiran Parade time may differ — confirm schedule on arrival at Edo Wonderland</li>
+    </ul></div>
+  </div>
+
+  <!-- KYOTO -->
+  <div class="city-section" id="city-kyoto">
+    <div class="city-hdr"><div style="display:flex;justify-content:space-between;align-items:flex-start;"><div><div class="city-tag">May 26–30 · 4 nights</div><div class="city-name">Kyoto</div><div class="city-meta">Ace Hotel Kyoto · Cultural heartland of Japan</div></div><a href="#" onclick="window.location.href='https://maps.google.com/?q=Kyoto+Japan';return false;" class="learn-more" style="font-size:12px;">📍 Map</a></div></div>
+    <div class="section-lbl">Tuesday May 26 · Arrival</div>
+    <div class="detail-table">
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">9:30 AM</div><div class="dt-text">Nozomi 116 departs Tokyo · arrives Kyoto ~11:10 AM</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">~12:00 PM</div><div class="dt-text">Check in Ace Hotel · bags from Tokyo already waiting</div></div></div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">2:00 PM</div><div class="dt-text"><strong>Nishiki Market</strong> · covered food market · street snacks <button class="act-btn" onclick="toggleAct('a26a')">🛒 Details</button></div></div>
+        <div class="dt-act-detail" id="a26a">A narrow 400-meter covered market nicknamed "Kyoto's Kitchen" — hundreds of stalls selling pickled vegetables, fresh tofu, grilled skewers, matcha sweets, and local specialties. Dating back to the Muromachi period (14th century). Perfect casual introduction to Kyoto food culture. 5 min walk from Ace Hotel.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e3931.html" class="learn-more" target="_blank">Japan Guide — Nishiki Market</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Nishiki+Market+Kyoto';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">Evening</div><div class="dt-text">Casual dinner near hotel · early night</div></div></div>
+    </div>
+
+    <div class="section-lbl">Wednesday May 27 · Fushimi Inari + Gion</div>
+    <div class="detail-table">
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">7:00 AM</div><div class="dt-text">Leave hotel · JR Inari Station (10 min from Kyoto Station)<a href="#" onclick="window.location.href='https://maps.google.com/?saddr=Kyoto+Station+Japan&daddr=Fushimi+Inari+Station+Kyoto&dirflg=r';return false;" class="learn-more" style="margin-left:4px;">🚆 Transit times</a></div></div></div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">7:30 AM</div><div class="dt-text"><strong>Fushimi Inari</strong> · thousands of red torii gates · go early · allow 2+ hrs <button class="act-btn" onclick="toggleAct('a27a')">🏮 Details</button></div></div>
+        <div class="dt-act-detail" id="a27a">One of Japan's most iconic sights — thousands of vermillion torii gates snaking up a sacred mountain. Dedicated to Inari, the Shinto god of rice, the shrine dates to 711 AD. The tunnel of gates stretches 4km to the summit. Even 45 minutes up gives you the magic. Go early — by 9am tour groups arrive in force.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e3915.html" class="learn-more" target="_blank">Japan Guide — Fushimi Inari</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Fushimi+Inari+Shrine+Kyoto';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">Afternoon</div><div class="dt-text">Return to hotel · rest · lunch · free afternoon</div></div></div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">5:30 PM</div><div class="dt-text"><strong>Gion district</strong> · traditional townhouses · lanterns at dusk <button class="act-btn" onclick="toggleAct('a27b')">🏮 Gion</button><button class="act-btn" onclick="toggleAct('a27c')">🍽️ Pontocho</button></div></div>
+        <div class="dt-act-detail" id="a27b">Kyoto's most famous geisha district — preserved wooden machiya townhouses lining cobblestone lanes. Geiko and maiko can be spotted heading to evening engagements in full kimono. The area flourished in the 17th century during Kyoto's cultural golden age.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e3902.html" class="learn-more" target="_blank">Japan Guide — Gion</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Gion+District+Kyoto';return false;" class="learn-more">📍 Google Maps</a></div></div>
+        <div class="dt-act-detail" id="a27c">Pontocho is a narrow alley parallel to the Kamo River — barely wide enough for two people, packed with some of Kyoto's finest restaurants. In summer, many open wooden platforms over the river (kawayuka dining). One of Kyoto's most romantic dining experiences.<div class="dt-act-links"><span></span><a href="#" onclick="window.location.href='https://maps.google.com/?q=Pontocho+Alley+Kyoto';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">7:00 PM</div><div class="dt-text"><strong>Pontocho alley</strong> · lantern-lit riverside dinner</div></div></div>
+    </div>
+
+    <div class="section-lbl">Thursday May 28 · Arashiyama</div>
+    <div class="detail-table">
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">7:30 AM</div><div class="dt-text">Leave hotel · JR Sagano Line to Saga-Arashiyama (~15 min)<a href="#" onclick="window.location.href='https://maps.google.com/?saddr=Kyoto+Station+Japan&daddr=Saga-Arashiyama+Station+Kyoto&dirflg=r';return false;" class="learn-more" style="margin-left:4px;">🚆 Transit times</a></div></div></div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">8:00 AM</div><div class="dt-text"><strong>Arashiyama Bamboo Grove</strong> · go early before crowds <button class="act-btn" onclick="toggleAct('a28a')">🎋 Details</button></div></div>
+        <div class="dt-act-detail" id="a28a">A path through towering moso bamboo — the stalks grow so densely they block the sky, creating an otherworldly green tunnel. Early morning is magical: silent except for the wind rustling the bamboo. One of Japan's most photographed landscapes.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e3912.html" class="learn-more" target="_blank">Japan Guide — Arashiyama</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Arashiyama+Bamboo+Grove+Kyoto';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">9:00 AM</div><div class="dt-text"><strong>Tenryu-ji Temple</strong> · serene pond garden backed by mountains <button class="act-btn" onclick="toggleAct('a28b')">🪷 Details</button></div></div>
+        <div class="dt-act-detail" id="a28b">A UNESCO World Heritage Zen temple founded in 1339. The garden features a central pond perfectly mirroring the Arashiyama mountains behind — the design technique of borrowing background scenery (shakkei) makes it feel infinitely deep. Less crowded than the bamboo grove. Your serene, contemplative, movie-moment temple.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e3913.html" class="learn-more" target="_blank">Japan Guide — Tenryu-ji</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Tenryu-ji+Temple+Kyoto';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">10:30 AM</div><div class="dt-text">Explore Arashiyama village · riverside · shops</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">12:30 PM</div><div class="dt-text">Lunch in Arashiyama · return to Kyoto · free afternoon</div></div></div>
+    </div>
+
+    <div class="section-lbl">Friday May 29 · Nara + Osaka Full Day</div>
+    <div class="detail-table">
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">7:30 AM</div><div class="dt-text">Leave Ace Hotel · walk to Kyoto Station (15 min)</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">8:00 AM</div><div class="dt-text"><strong>Kintetsu Express</strong> Kyoto → Nara · Suica tap · ~45 min · ¥620pp · use Google Maps<a href="#" onclick="window.location.href='https://maps.google.com/?saddr=Kyoto+Station+Japan&daddr=Kintetsu+Nara+Station+Japan&dirflg=r';return false;" class="learn-more" style="margin-left:4px;">🚆 Transit times</a></div></div></div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">8:45 AM</div><div class="dt-text"><strong>Nara Deer Park + Todai-ji</strong> · walk 10–15 min from station <button class="act-btn" onclick="toggleAct('a29a')">🦌 Deer Park</button><button class="act-btn" onclick="toggleAct('a29b')">🏛️ Todai-ji</button></div></div>
+        <div class="dt-act-detail" id="a29a">Around 1,200 freely roaming Sika deer considered sacred messengers of the gods since the 8th century. They bow in exchange for shika senbei (deer crackers, ¥150/pack). One of Japan's most unique and joyful experiences. Keep food hidden when not feeding — deer can be assertive!<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e4103.html" class="learn-more" target="_blank">Japan Guide — Nara Park</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Nara+Deer+Park+Nara';return false;" class="learn-more">📍 Google Maps</a></div></div>
+        <div class="dt-act-detail" id="a29b">Built in 745 AD, Todai-ji houses the world's largest bronze Buddha — nearly 15 meters tall. The Great Buddha Hall (Daibutsuden) is the world's largest wooden building. Famous pillar with a hole the size of the Buddha's nostril — kids who squeeze through are granted enlightenment (it's tight — the boys can try!). Allow 60–90 minutes.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e4100.html" class="learn-more" target="_blank">Japan Guide — Todai-ji</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Todai-ji+Temple+Nara';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">~11:45 AM</div><div class="dt-text">Head back to Kintetsu Nara Station</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">~12:00 PM</div><div class="dt-text"><strong>Kintetsu Express</strong> Nara → Osaka Namba · Suica tap · ~40 min · ¥680pp<a href="#" onclick="window.location.href='https://maps.google.com/?saddr=Kintetsu+Nara+Station+Japan&daddr=Osaka+Namba+Station+Japan&dirflg=r';return false;" class="learn-more" style="margin-left:4px;">🚆 Transit times</a></div></div></div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">~1:00 PM</div><div class="dt-text"><strong>Dotonbori</strong> · late lunch · takoyaki, kushikatsu, ramen <button class="act-btn" onclick="toggleAct('a29c')">🌆 Details</button></div></div>
+        <div class="dt-act-detail" id="a29c">Osaka's legendary neon entertainment and food district. Birthplace of takoyaki (octopus balls) — try them hot from a street stall. Also try kushikatsu (deep-fried skewers — don't double-dip!). The Glico Running Man billboard is the icon. Osaka's food culture (kuidaore — eat til you drop) is the best in Japan.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e4001.html" class="learn-more" target="_blank">Japan Guide — Dotonbori</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Dotonbori+Osaka';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">2:30 PM</div><div class="dt-text"><strong>Kuromon Ichiba Market</strong> · 10 min walk from Dotonbori <button class="act-btn" onclick="toggleAct('a29d')">🦞 Details</button></div></div>
+        <div class="dt-act-detail" id="a29d">Osaka's famous fresh food market — nicknamed "Osaka's Kitchen." Hundreds of stalls selling fresh seafood, Wagyu skewers (for Rohan!), produce, and street snacks. More authentic and local than Dotonbori. Allow 30–45 minutes of browsing and snacking.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e4007.html" class="learn-more" target="_blank">Japan Guide — Kuromon Market</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Kuromon+Ichiba+Market+Osaka';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">3:30 PM</div><div class="dt-text"><strong>Osaka Castle</strong> · 20 min by subway <button class="act-btn" onclick="toggleAct('a29e')">🏯 Details</button></div></div>
+        <div class="dt-act-detail" id="a29e">One of Japan's most famous castles — a stunning five-story tower surrounded by enormous stone walls and moats. Originally built by Toyotomi Hideyoshi in 1583. The surrounding park is beautiful in late May — lush green grounds. The interior museum tells the story of Osaka's unification of Japan. Allow 90 minutes.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e4000.html" class="learn-more" target="_blank">Japan Guide — Osaka Castle</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Osaka+Castle+Japan';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">5:30 PM</div><div class="dt-text"><strong>Shinsekai</strong> · retro 1920s neighbourhood · 15 min from castle <button class="act-btn" onclick="toggleAct('a29f')">🏮 Details</button></div></div>
+        <div class="dt-act-detail" id="a29f">A fascinatingly retro neighbourhood built in the 1920s — modelled on Coney Island and Paris. Home to Tsutenkaku Tower and dozens of kushikatsu restaurants. Completely different vibe from Dotonbori — gritty, atmospheric, authentically local Osaka.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e4012.html" class="learn-more" target="_blank">Japan Guide — Shinsekai</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Shinsekai+Osaka';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">6:30 PM</div><div class="dt-text"><strong>Kushikatsu dinner in Shinsekai</strong> · walk-in · no reservation needed <button class="act-btn" onclick="toggleAct('a29g')">🍢 Kushikatsu</button></div></div>
+        <div class="dt-act-detail" id="a29g">Kushikatsu was born in Shinsekai — skewered meat, vegetables, and seafood breaded and deep-fried, served with a communal dipping sauce. The golden rule: NEVER double-dip. Dip once, eat, move on. Signs everywhere remind you. Casual, fun, very Osaka. Walk in anywhere that looks busy.<div class="dt-act-links"><span></span><a href="#" onclick="window.location.href='https://maps.google.com/?q=Kushikatsu+Daruma+Shinsekai+Osaka';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">~8:30 PM</div><div class="dt-text">Train Osaka → Kyoto · Suica tap · ~15 min · ¥560pp · use Google Maps<a href="#" onclick="window.location.href='https://maps.google.com/?saddr=Osaka+Namba+Station+Japan&daddr=Kyoto+Station+Japan&dirflg=r';return false;" class="learn-more" style="margin-left:4px;">🚆 Transit times</a></div></div></div>
+      <div class="dt-row reminder"><div class="dt-main"><div class="dt-time">Tonight!</div><div class="dt-text">🧳 Ship 2 large suitcases to Machia Hotel Takayama at hotel front desk before 9pm · next-day delivery</div></div></div>
+    </div>
+    <div class="tips-box" style="margin-top:12px;margin-bottom:8px"><h4>Kyoto Notes</h4><ul>
+      <li>Fushimi Inari and Arashiyama — go early morning to beat crowds</li>
+      <li>All Nara + Osaka trains: Suica tap · no reservation · use Google Maps for exact times</li>
+      <li>Nara deer bow for crackers — buy at the park entrance (¥150)</li>
+      <li>Kushikatsu golden rule: NEVER double-dip into the communal sauce</li>
+    </ul></div>
+  </div>
+
+  <!-- TAKAYAMA -->
+  <div class="city-section" id="city-takayama">
+    <div class="city-hdr"><div style="display:flex;justify-content:space-between;align-items:flex-start;"><div><div class="city-tag">May 30 – Jun 1 · 2 nights</div><div class="city-name">Takayama</div><div class="city-meta">Machia Hotel · Japanese Alps · "Little Kyoto of the Alps"</div></div><a href="#" onclick="window.location.href='https://maps.google.com/?q=Takayama+Japan';return false;" class="learn-more" style="font-size:12px;">📍 Map</a></div></div>
+    <div class="section-lbl">Saturday May 30 · Arrival</div>
+    <div class="detail-table">
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">9:30 AM</div><div class="dt-text">Nozomi 116 departs Kyoto → Nagoya</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">10:04 AM</div><div class="dt-text">Arrive Nagoya · find Hida Limited Express platform</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">10:48 AM</div><div class="dt-text">Hida 7 departs Nagoya → Takayama · scenic Alpine ride</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">1:12 PM</div><div class="dt-text">Arrive Takayama · check in Machia Hotel · bags already waiting</div></div></div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">Afternoon</div><div class="dt-text"><strong>Sanmachi Suji</strong> · preserved Edo merchant streets · sake breweries <button class="act-btn" onclick="toggleAct('a30a')">🏘️ Details</button></div></div>
+        <div class="dt-act-detail" id="a30a">Three beautifully preserved streets of Edo-period merchant houses — dark-wooded facades, sake breweries, craft shops selling lacquerware, ceramics, and Hida folk crafts. Takayama prospered as a centre of skilled carpentry under direct Tokugawa shogunate rule. Feels completely authentic, not touristy. Best in morning light or at golden hour.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e5956.html" class="learn-more" target="_blank">Japan Guide — Takayama</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Sanmachi+Suji+Takayama';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+    </div>
+
+    <div class="section-lbl">Sunday May 31 · Shirakawa-go</div>
+    <div class="detail-table">
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">Morning</div><div class="dt-text"><strong>Shirakawa-go</strong> · UNESCO thatched-roof villages · ~1hr by bus <button class="act-btn" onclick="toggleAct('a31a')">🏔️ Details</button></div></div>
+        <div class="dt-act-detail" id="a31a">A remote mountain village of gassho-zukuri farmhouses — massive steep thatched roofs designed to shed heavy snow, stacked four or five floors high. UNESCO World Heritage since 1995. Late May brings lush green rice paddies surrounding the village. One of Japan's most scenic and culturally rich landscapes.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e5950.html" class="learn-more" target="_blank">Japan Guide — Shirakawa-go</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Shirakawa-go+Village+Gifu';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">Afternoon</div><div class="dt-text">Return to Takayama · explore old town more · optional hiking <button class="act-btn" onclick="toggleAct('a31b')">🥾 Hiking</button></div></div>
+        <div class="dt-act-detail" id="a31b">Optional — late May is excellent for hiking: wildflowers blooming, snowmelt streams, crisp mountain air. Various difficulty levels around Takayama. Your hotel concierge can recommend options suitable for your family.<div class="dt-act-links"><span></span><a href="#" onclick="window.location.href='https://maps.google.com/?q=Takayama+Hiking+Trails+Japan';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">Evening</div><div class="dt-text">Dinner in Takayama · local Hida beef for Rohan! · sake brewery</div></div></div>
+      <div class="dt-row reminder"><div class="dt-main"><div class="dt-time">Tonight!</div><div class="dt-text">🧳 Ship 2 large suitcases to Hotel Indigo Hakone Gora at hotel front desk before 9pm · next-day delivery</div></div></div>
+    </div>
+  </div>
+
+  <!-- HAKONE -->
+  <div class="city-section" id="city-hakone">
+    <div class="city-hdr"><div style="display:flex;justify-content:space-between;align-items:flex-start;"><div><div class="city-tag">Jun 1–3 · 2 nights</div><div class="city-name">Hakone</div><div class="city-meta">Hotel Indigo Hakone Gora · Volcanic mountains · Onsen country</div></div><a href="#" onclick="window.location.href='https://maps.google.com/?q=Hakone+Gora+Japan';return false;" class="learn-more" style="font-size:12px;">📍 Map</a></div></div>
+    <div class="section-lbl">Monday Jun 1 · Arrival</div>
+    <div class="detail-table">
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">9:36 AM</div><div class="dt-text">Hida departs Takayama → Nagoya</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">12:04 PM</div><div class="dt-text">Arrive Nagoya · find Shinkansen platform</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">12:38 PM</div><div class="dt-text">Kodama departs Nagoya → Odawara</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">2:42 PM</div><div class="dt-text">Arrive Odawara · <strong>buy Hakone Free Pass</strong> · ¥6,000 adult · covers all local transport</div></div></div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">~3:00 PM</div><div class="dt-text"><strong>Hakone Tozan Railway</strong> → Gora · scenic hydrangea-lined mountain railway <button class="act-btn" onclick="toggleAct('a1b')">🎋 Details</button><a href="#" onclick="window.location.href='https://maps.google.com/?saddr=Odawara+Station+Japan&daddr=Gora+Station+Hakone+Japan&dirflg=r';return false;" class="learn-more" style="margin-left:4px;">🚆 Transit times</a></div></div>
+        <div class="dt-act-detail" id="a1b">Japan's steepest mountain railway using a switchback system. In early June, thousands of hydrangeas bloom in blue and purple along the tracks. The journey from Odawara to Gora takes about 55 minutes. Fully covered by Hakone Free Pass.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e5204.html" class="learn-more" target="_blank">Japan Guide — Hakone</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Hakone+Tozan+Railway+Gora+Station';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">~3:45 PM</div><div class="dt-text">Arrive Gora · taxi to Hotel Indigo (~10 min · ¥1,500) · check in · onsen <button class="act-btn" onclick="toggleAct('a1a')">♨️ Onsen</button></div></div>
+        <div class="dt-act-detail" id="a1a">Hakone sits on a volcanic caldera, producing naturally geothermally heated mineral-rich water. Soaking in onsen is a deeply Japanese ritual — different minerals treat different ailments. Your hotel has onsen access. Etiquette: wash thoroughly before entering, no swimwear, tattoos may be an issue at public facilities (hotel onsen is usually fine).<div class="dt-act-links"><span></span><a href="#" onclick="window.location.href='https://maps.google.com/?q=Hotel+Indigo+Hakone+Gora';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+    </div>
+
+    <div class="section-lbl">Tuesday Jun 2 · Owakudani + Relax</div>
+    <div class="detail-table">
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">Morning</div><div class="dt-text"><strong>Owakudani Ropeway</strong> · volcanic valley cable car <button class="act-btn" onclick="toggleAct('a2a')">🚡 Ropeway</button><button class="act-btn" onclick="toggleAct('a2b')">🗻 Mt Fuji</button></div></div>
+        <div class="dt-act-detail" id="a2a">A cable car that floats above an active volcanic valley — sulfur vents billow white smoke from below. Buy kuro-tamago (black eggs hard-boiled in sulfurous springs — each adds 7 years to your life!). Covered by Hakone Free Pass.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e5202.html" class="learn-more" target="_blank">Japan Guide — Owakudani</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Owakudani+Ropeway+Hakone';return false;" class="learn-more">📍 Google Maps</a></div></div>
+        <div class="dt-act-detail" id="a2b">Mt Fuji is visible from Owakudani on clear days — June visibility is roughly 20% due to early rainy season. Don't make it the goal — treat it as a bonus. Even without Fuji, Owakudani's volcanic landscape is extraordinary.<div class="dt-act-links"><span></span><a href="#" onclick="window.location.href='https://maps.google.com/?q=Owakudani+Hakone+Fuji+View';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">Afternoon</div><div class="dt-text">Relax · explore Hakone · second onsen soak</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">Evening</div><div class="dt-text">Dinner at hotel or nearby · early night before Tokyo</div></div></div>
+      <div class="dt-row reminder"><div class="dt-main"><div class="dt-time">Tonight!</div><div class="dt-text">🧳 Ship 2 large suitcases to Tokyo Edition Toranomon at hotel front desk before 9pm · next-day delivery</div></div></div>
+    </div>
+    <div class="tips-box" style="margin-top:12px;margin-bottom:8px"><h4>Hakone Notes</h4><ul>
+      <li>Leave hotel 8:00 AM Wednesday Jun 3 — taxi to Gora Station for Tozan Railway → Odawara</li>
+      <li>Hakone Free Pass covers Tozan Railway, buses, and discounts on ropeway</li>
+      <li>June = hydrangea season — Tozan Railway tracks lined with blooms</li>
+      <li>Don't overschedule — this is the relaxation leg of the trip</li>
+    </ul><a href="#" onclick="window.location.href='https://maps.google.com/?saddr=Gora+Station+Hakone+Japan&daddr=Odawara+Station+Japan&dirflg=r';return false;" class="learn-more" style="margin-left:4px;">🚆 Transit times</a></div>
+  </div>
+
+  <!-- TOKYO II -->
+  <div class="city-section" id="city-tokyo2">
+    <div class="city-hdr"><div style="display:flex;justify-content:space-between;align-items:flex-start;"><div><div class="city-tag">Jun 3–6 · 3 nights</div><div class="city-name">Tokyo — Toranomon</div><div class="city-meta">Tokyo Edition Toranomon · Modern Tokyo · Tokyo Tower views</div></div><a href="#" onclick="window.location.href='https://maps.google.com/?q=Toranomon+Tokyo';return false;" class="learn-more" style="font-size:12px;">📍 Map</a></div></div>
+
+    <div class="section-lbl">Wednesday Jun 3 · Arrival + Florilège</div>
+    <div class="detail-table">
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">8:00 AM</div><div class="dt-text">Leave hotel · taxi to Gora Station · Tozan Railway → Odawara</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">9:14 AM</div><div class="dt-text">Kodama departs Odawara → Tokyo Station</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">9:48 AM</div><div class="dt-text">Arrive Tokyo · check in Tokyo Edition Toranomon · bags already waiting</div></div></div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">11:00 AM</div><div class="dt-text"><strong>Imperial Palace Gardens</strong> · free · open til 5pm <button class="act-btn" onclick="toggleAct('a3a')">🏯 Details</button></div></div>
+        <div class="dt-act-detail" id="a3a">The Imperial Palace is home to Japan's Emperor and Imperial Family. The outer East Gardens are free and open to the public — moats, traditional stone bridges, towers, and manicured grounds on the former site of Edo Castle. Expansive and peaceful — a rare green space at the heart of Tokyo.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e3017.html" class="learn-more" target="_blank">Japan Guide — Imperial Palace</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Imperial+Palace+East+Gardens+Tokyo';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">4:30 PM</div><div class="dt-text">Back to hotel · freshen up</div></div></div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">6:00 PM</div><div class="dt-text"><strong>Florilège ✓ CONFIRMED</strong> · French-Japanese fusion ★★ · Minami-Aoyama <button class="act-btn" onclick="toggleAct('a3b')">🍽️ Details</button></div></div>
+        <div class="dt-act-detail" id="a3b">2 Michelin stars. Chef Hiroyasu Kawate bridges French technique with Japanese seasonal ingredients. Dramatic circular dining room with open kitchen — diners face the chefs. #31 Asia's 50 Best 2026. Minami-Aoyama, 30 min from hotel. ✓ CONFIRMED 6:00 PM · party of 4.<div class="dt-act-links"><a href="https://www.aoyama-florilege.jp/en/" class="learn-more" target="_blank">Florilège Official Site</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Florilege+Restaurant+Minami-Aoyama+Tokyo';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+    </div>
+
+    <div class="section-lbl">Thursday Jun 4 · teamLab Day</div>
+    <div class="detail-table">
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">8:00 AM</div><div class="dt-text">Breakfast at hotel</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">8:45 AM</div><div class="dt-text">Subway to Shin-Toyosu (~25 min) · wear slip-on shoes!<a href="#" onclick="window.location.href='https://maps.google.com/?saddr=Toranomon+Station+Tokyo&daddr=Shin-Toyosu+Station+Tokyo&dirflg=r';return false;" class="learn-more" style="margin-left:4px;">🚆 Transit times</a></div></div></div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">9:30 AM</div><div class="dt-text"><strong>teamLab Planets ✓ BOOKED</strong> · Water, Garden, Forest, Open-Air <button class="act-btn" onclick="toggleAct('a4a')">🎨 Details</button></div></div>
+        <div class="dt-act-detail" id="a4a">An immersive art experience — wade through knee-deep water, walk through infinite mirror rooms, lie on floors surrounded by blooming digital flowers. Created by the art collective teamLab. Four areas: Water Area (wade barefoot), Moss Garden, Forest of Resonating Lamps, Open-Air. Allow 2–3 hours. ✓ 9:30 AM booked.<div class="dt-act-links"><a href="https://planets.teamlab.art/tokyo/" class="learn-more" target="_blank">teamLab Planets Official Site</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=teamLab+Planets+Tokyo+Toyosu';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">12:30 PM</div><div class="dt-text"><strong>Vegan Ramen UZU</strong> · teamLab plaza · walk-in · ~20 min wait <button class="act-btn" onclick="toggleAct('a4b')">🍜 Details</button></div></div>
+        <div class="dt-act-detail" id="a4b">World's first ramen restaurant with Michelin Green Star (sustainability) + Bib Gourmand, 4 consecutive years. Oat milk miso broth, roasted tomato, maitake mushrooms, yuzu peel. Walk-in only — ~20 min wait. Accessible to teamLab ticket holders only.<div class="dt-act-links"><span></span><a href="#" onclick="window.location.href='https://maps.google.com/?q=Vegan+Ramen+UZU+Tokyo+Toyosu';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">2:30 PM</div><div class="dt-text"><strong>Harajuku</strong> · Tiger Sugar or Gong Cha boba · Takeshita Street <button class="act-btn" onclick="toggleAct('a4c')">🧋 Details</button></div></div>
+        <div class="dt-act-detail" id="a4c">Tokyo's youth fashion and pop culture district. Tiger Sugar (Omotesando Hills) is famous for tiger-stripe brown sugar boba. Gong Cha is the reliable classic. Nikki's #1 request! Takeshita Street has crepe stands, candy shops, and quirky fashion boutiques.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e3006.html" class="learn-more" target="_blank">Japan Guide — Harajuku</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Takeshita+Street+Harajuku+Tokyo';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">4:00 PM</div><div class="dt-text"><strong>Shibuya Crossing</strong> · iconic scramble · browse Shibuya <button class="act-btn" onclick="toggleAct('a4d')">🚦 Details</button></div></div>
+        <div class="dt-act-detail" id="a4d">The world's busiest pedestrian crossing — up to 2,500 people cross simultaneously when lights change in all directions. The chaos is completely orderly. Surrounded by massive video screens and neon. One of Tokyo's most cinematic moments.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e3007.html" class="learn-more" target="_blank">Japan Guide — Shibuya</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Shibuya+Scramble+Crossing+Tokyo';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">6:00 PM</div><div class="dt-text"><strong>Shibuya Sky</strong> · sunset observation deck · book May 20! <button class="act-btn" onclick="toggleAct('a4e')">🌆 Details</button></div></div>
+        <div class="dt-act-detail" id="a4e">Open-air rooftop at 229 meters on top of Shibuya Scramble Square — 360° views of Tokyo at sunset. Looking straight down you can see the famous Shibuya Crossing. Book the 6:00–6:15 PM slot for golden hour. ¥3,700/adult. Book May 20 at 11am ET!<div class="dt-act-links"><a href="https://www.shibuya-scramble-square.com/sky/" class="learn-more" target="_blank">Shibuya Sky Official Site</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Shibuya+Sky+Scramble+Square+Tokyo';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">Evening</div><div class="dt-text"><strong>Shinjuku</strong> · neon streets · Golden Gai alleys <button class="act-btn" onclick="toggleAct('a4f')">🌃 Details</button></div></div>
+        <div class="dt-act-detail" id="a4f">Tokyo's most dazzling entertainment district — Kabukicho's towers of neon, the narrow Golden Gai alley network of tiny atmospheric bars (each fits 6–8 people), and department stores lit like spaceships.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e3011.html" class="learn-more" target="_blank">Japan Guide — Shinjuku</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Kabukicho+Shinjuku+Tokyo';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+    </div>
+
+    <div class="section-lbl">Friday Jun 5 · Tsukiji · Ginza · Dinner</div>
+    <div class="detail-table">
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">10:00 AM</div><div class="dt-text"><strong>Tsukiji sushi workshop</strong> · make it · eat it · that's lunch <button class="act-btn" onclick="toggleAct('a5a')">🍣 Details</button></div></div>
+        <div class="dt-act-detail" id="a5a">A hands-on sushi making class — you make several rolls and nigiri pieces alongside a chef, then eat what you made. Perfect family activity. Allow 1.5–2 hours. Tsukiji Outer Market is the ideal setting — surrounded by Japan's most famous seafood market. Browse the market stalls before or after.<div class="dt-act-links"><a href="https://www.getyourguide.com/tokyo-l193/sushi-making-t62581/" class="learn-more" target="_blank">Book: GetYourGuide — Sushi Workshop</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Tsukiji+Outer+Market+Tokyo';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">12:30 PM</div><div class="dt-text">Browse Tsukiji Outer Market stalls · walk to Ginza (10 min)</div></div></div>
+      <div class="dt-row">
+        <div class="dt-main"><div class="dt-time">1:30 PM</div><div class="dt-text"><strong>Ginza</strong> · Mikimoto · boutiques · Ginza Six <button class="act-btn" onclick="toggleAct('a5b')">💎 Details</button></div></div>
+        <div class="dt-act-detail" id="a5b">Tokyo's most prestigious shopping district. Mikimoto Ginza Main Store on Chuo-dori Avenue — world's original pearl jeweller, closes at 7pm. Ginza Six has luxury flagship stores (Dior, Saint Laurent) plus a rooftop garden. Matsuya and Mitsukoshi department stores close at 8pm. 10 min from your hotel.<div class="dt-act-links"><a href="https://www.japan-guide.com/e/e3005.html" class="learn-more" target="_blank">Japan Guide — Ginza</a><a href="#" onclick="window.location.href='https://maps.google.com/?q=Mikimoto+Ginza+Tokyo';return false;" class="learn-more">📍 Google Maps</a></div></div>
+      </div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">~7:00 PM</div><div class="dt-text"><strong>Casual dinner in Ginza</strong> · izakaya or ramen · no reservation needed</div></div></div>
+      <div class="dt-row reminder"><div class="dt-main"><div class="dt-time">Tonight!</div><div class="dt-text">🚕 Ask hotel concierge to arrange a Jumbo Taxi for 7:30 AM tomorrow to Haneda Airport (HND) · full luggage for 4 · confirm pickup at hotel entrance</div></div></div>
+    </div>
+
+    <div class="section-lbl">Saturday Jun 6 · Departure</div>
+    <div class="detail-table">
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">7:30 AM</div><div class="dt-text">Jumbo Taxi departs hotel → Haneda Airport (HND) · ~30 min</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">10:20 AM</div><div class="dt-text">Depart HND → IAD (2h 30m layover) → Atlanta</div></div></div>
+      <div class="dt-row"><div class="dt-main"><div class="dt-time">2:34 PM</div><div class="dt-text">Arrive Atlanta ✈ Home!</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKINGS -->
+<div class="view" id="view-bookings">
+  <div class="ok-bar"><div class="ot">✓ confirmed</div><div class="ob"><strong>teamLab Planets</strong> · Thu Jun 4 · 9:30 AM · Toyosu, Tokyo</div></div>
+  <div class="ok-bar" style="margin-top:8px"><div class="ot">✓ confirmed</div><div class="ob"><strong>Florilège</strong> · Wed Jun 3 · 6:00 PM · French-Japanese fusion ★★ · Party of 4</div></div>
+  <div class="ok-bar" style="margin-top:8px"><div class="ot">✓ confirmed</div><div class="ob"><strong>Sumo Tournament Final Day</strong> · Sun May 24 · GetYourGuide · TNK placard · Ryogoku West Exit · Edo Noren entrance</div></div>
+  <div class="ok-bar" style="margin-top:8px"><div class="ot">✓ confirmed</div><div class="ob"><strong>Edo Wonderland</strong> · Mon May 25 · KKday tickets · Adults ¥4,700 · Child (11) ¥2,400</div></div>
+  <div class="alert-bar" style="margin-top:8px"><div class="at">! Book Wed May 20 · 11:00 AM ET</div><div class="ab"><strong>Shibuya Sky</strong> · Jun 4 · 6:00–6:15 PM sunset slot · Party of 4 · ¥3,700/adult<br><a href="https://webket.jp/pc/ticket/itemdetail?fc=00396&ac=8001&igc=0030#calenderOpen2">→ Official booking link</a></div></div>
+  <div class="section-lbl">Still To Book</div>
+  <div class="cards">
+    <div class="card"><div class="card-hd" onclick="toggleCard(this)"><div class="card-icon alert">🚉</div><div class="card-text"><div class="card-title">Spacia Kinu Train Tickets</div><div class="card-sub">Buy Sat May 23 at Tobu Asakusa Station on arrival</div></div><span class="card-badge badge-book">Buy on Arrival</span></div><div class="card-body"><p>Reserved seats both ways for Mon May 25: Asakusa → Kinugawa Onsen (7:30 AM) and return (~3:00 PM). Also buy Nikko All Area Pass at the same counter. ~¥2,700/person each way.</p></div></div>
+    <div class="card"><div class="card-hd" onclick="toggleCard(this)"><div class="card-icon food">🍣</div><div class="card-text"><div class="card-title">Tsukiji Sushi Workshop</div><div class="card-sub">Fri Jun 5 · morning · make it + eat it = lunch</div></div><span class="card-badge badge-book">Book Soon</span></div><div class="card-body"><p>Family hands-on sushi making class at Tsukiji Outer Market. Allow 1.5–2 hours. You make it, you eat it — that's lunch! Cost roughly $50–80/person.</p><div class="card-links"><a href="https://www.getyourguide.com/tokyo-l193/sushi-making-t62581/" class="card-link link-dark" target="_blank">GetYourGuide</a><a href="https://www.airbnb.com/s/experiences/online/query=sushi+tokyo" class="card-link link-light" target="_blank">Airbnb Experiences</a></div></div></div>
+    <div class="card"><div class="card-hd" onclick="toggleCard(this)"><div class="card-icon food">📧</div><div class="card-text"><div class="card-title">Email Asakusa View Hotel</div><div class="card-sub">Airport transfer + Takkyubin + casual dinner rec</div></div><span class="card-badge badge-tbd">Pending Reply</span></div><div class="card-body"><p>Email sent requesting: (1) private transfer from NRT Terminal 1 arriving 3:25 PM May 23, (2) whether Takkyubin needs advance booking, (3) casual dinner recommendation near hotel for Mon May 25. No beef (wife + boys) · no shrimp wife allergy.</p></div></div>
+    <div class="card"><div class="card-hd" onclick="toggleCard(this)"><div class="card-icon food">🥢</div><div class="card-text"><div class="card-title">Sunday May 24 Dinner</div><div class="card-sub">After sumo · Ryogoku chanko nabe · walk-in</div></div><span class="card-badge badge-ok">Walk-in</span></div><div class="card-body"><p>Chanko nabe restaurants right near Ryogoku Kokugikan — no reservation needed. Walk out of the sumo tournament and pick the busiest-looking chanko spot nearby. Chicken and tofu-based — no beef.</p></div></div>
+  </div>
+</div>
+
+<!-- DINING -->
+<div class="view" id="view-dining">
+  <div class="section-lbl">Dining Plan</div>
+  <div class="cards">
+    <div class="card"><div class="card-hd" onclick="toggleCard(this)"><div class="card-icon food">🏪</div><div class="card-text"><div class="card-title">7-Eleven Asakusa</div><div class="card-sub">Sat May 23 · first night · classic konbini</div></div><span class="card-badge badge-ok">Planned</span></div><div class="card-body"><p>Classic Japan konbini. Onigiri, sandwiches, hot foods. No beef for wife + boys, no shrimp for wife — easy to navigate. 5 min walk from hotel and Observation Terrace.</p></div></div>
+    <div class="card"><div class="card-hd" onclick="toggleCard(this)"><div class="card-icon food">🍲</div><div class="card-text"><div class="card-title">Chanko Nabe · Ryogoku</div><div class="card-sub">Sun May 24 evening · after sumo · walk-in</div></div><span class="card-badge badge-ok">Walk-in</span></div><div class="card-body"><p>Sumo wrestlers' protein-rich hot pot stew — chicken, tofu, vegetables. Many restaurants right near Ryogoku Kokugikan. No reservation needed. No beef — naturally chicken-based.</p></div></div>
+    <div class="card"><div class="card-hd" onclick="toggleCard(this)"><div class="card-icon food">🍣</div><div class="card-text"><div class="card-title">Tsukiji Sushi Workshop</div><div class="card-sub">Fri Jun 5 · morning · lunch</div></div><span class="card-badge badge-book">Book Soon</span></div><div class="card-body"><p>Hands-on family sushi making class — make it, eat it, that's lunch. Tsukiji Outer Market. 1.5–2 hours. ~$50–80/person.</p><div class="card-links"><a href="https://www.getyourguide.com/tokyo-l193/sushi-making-t62581/" class="card-link link-dark" target="_blank">GetYourGuide</a></div></div></div>
+    <div class="card"><div class="card-hd" onclick="toggleCard(this)"><div class="card-icon food">🇫🇷</div><div class="card-text"><div class="card-title">Florilège ✓</div><div class="card-sub">Wed Jun 3 · 6:00 PM · French-Japanese ★★</div></div><span class="card-badge badge-ok">Confirmed</span></div><div class="card-body"><p>2 Michelin stars. Chef Kawate's French-Japanese fusion — dramatic circular dining room, open kitchen. #31 Asia's 50 Best 2026. Minami-Aoyama, 30 min from hotel. The grand special dinner of the trip.</p></div></div>
+    <div class="card"><div class="card-hd" onclick="toggleCard(this)"><div class="card-icon food">🍜</div><div class="card-text"><div class="card-title">Vegan Ramen UZU Tokyo</div><div class="card-sub">Thu Jun 4 · teamLab plaza · walk-in</div></div><span class="card-badge badge-ok">Planned</span></div><div class="card-body"><p>Michelin Bib Gourmand + world's first ramen Michelin Green Star. Oat milk miso broth, roasted tomato, maitake mushrooms, yuzu peel. Walk-in only · ~20 min wait · teamLab ticket required.</p></div></div>
+    <div class="card"><div class="card-hd" onclick="toggleCard(this)"><div class="card-icon food">🍶</div><div class="card-text"><div class="card-title">Casual Ginza Dinner</div><div class="card-sub">Fri Jun 5 · evening · no reservation</div></div><span class="card-badge badge-ok">Walk-in</span></div><div class="card-body"><p>Relaxed final evening in Ginza. Options: izakaya (Japanese pub shared plates), ramen, tonkatsu, or Ginza Six basement food hall. No reservations needed. After a big shopping day and sushi lunch, keep it casual and enjoyable.</p></div></div>
+  </div>
+  <div class="section-lbl">Dietary Notes</div>
+  <div style="margin:0 12px;background:var(--white);border:1px solid var(--mist);border-radius:10px;padding:14px;">
+    <div style="font-size:14px;font-weight:500;margin-bottom:8px;">Family Constraints</div>
+    <div style="font-size:13px;color:var(--ink);line-height:1.9;">🚫 <strong>No beef</strong> — wife + both boys (Hindu)<br>🚫 <strong>No shrimp</strong> — wife (allergy · always mention at every booking)<br>✅ <strong>Rohan</strong> eats everything<br>ℹ️ Confirm shrimp allergy at every reservation</div>
+  </div>
+</div>
+
+<!-- TRANSPORT -->
+<div class="view" id="view-transport">
+  <div class="section-lbl">Airport Transfers</div>
+  <div class="train-table">
+    <div class="tr-row"><div class="tr-label">Arrival May 23</div><div class="tr-content"><strong>NRT Terminal 1 → Asakusa View Hotel</strong> · Private transfer · awaiting hotel response · land 3:25 PM · arrive hotel ~6:00 PM</div></div>
+    <div class="tr-row booked"><div class="tr-label">Departure Jun 6</div><div class="tr-content"><strong>Tokyo Edition Toranomon → HND</strong> · Jumbo Taxi · arrange with hotel concierge evening of Jun 5 · 7:30 AM pickup · ~30 min · ~¥8,000–12,000</div></div>
+  </div>
+
+  <div class="section-lbl">All Intercity Trains · Booked ✓</div>
+  <div class="train-table">
+    <div class="tr-row booked"><div class="tr-label">✓ May 26</div><div class="tr-content"><strong>Tokyo → Kyoto</strong> · Nozomi 116 · 9:30 AM → ~11:10 AM · Smart EX · Ordinary reserved</div></div>
+    <div class="tr-row booked"><div class="tr-label">✓ May 30</div><div class="tr-content"><strong>Kyoto → Takayama</strong> · Nozomi to Nagoya 9:30 AM · Hida 7 10:48 AM → 1:12 PM · Klook + Smart EX</div></div>
+    <div class="tr-row booked"><div class="tr-label">✓ Jun 1</div><div class="tr-content"><strong>Takayama → Hakone</strong> · Hida 9:36 AM → Nagoya 12:04 PM · Kodama 12:38 PM → Odawara 2:42 PM</div></div>
+    <div class="tr-row booked"><div class="tr-label">✓ Jun 3</div><div class="tr-content"><strong>Hakone → Tokyo</strong> · Tozan Railway → Odawara 8:00 AM · Kodama 9:14 AM → Tokyo 9:48 AM</div></div>
+  </div>
+
+  <div class="section-lbl">Day Trip Trains · No Booking · Suica Tap</div>
+  <div class="train-table">
+    <div class="tr-row"><div class="tr-label">May 25</div><div class="tr-content"><strong>Asakusa → Kinugawa Onsen (Edo Wonderland)</strong> · Spacia Kinu · Buy at Tobu Asakusa Station May 23 · reserved seats · ¥2,700pp each way</div></div>
+    <div class="tr-row"><div class="tr-label">May 29</div><div class="tr-content"><strong>Kyoto → Nara → Osaka → Kyoto</strong> · Kintetsu Express + JR · Suica tap · no reservation · ¥620 / ¥680 / ¥560pp<br><a href="#" onclick="window.location.href='https://maps.google.com/?saddr=Kyoto+Station+Japan&daddr=Kintetsu+Nara+Station+Japan&dirflg=r';return false;" class="learn-more" style="margin-left:4px;">🚆 Transit times</a> <a href="#" onclick="window.location.href='https://maps.google.com/?saddr=Kintetsu+Nara+Station+Japan&daddr=Osaka+Namba+Station+Japan&dirflg=r';return false;" class="learn-more" style="margin-left:4px;">🚆 Transit times</a> <a href="#" onclick="window.location.href='https://maps.google.com/?saddr=Osaka+Namba+Station+Japan&daddr=Kyoto+Station+Japan&dirflg=r';return false;" class="learn-more" style="margin-left:4px;">🚆 Transit times</a></div></div>
+  </div>
+
+  <div class="section-lbl">Hakone Local Transport</div>
+  <div class="train-table">
+    <div class="tr-row"><div class="tr-label">Jun 1–3</div><div class="tr-content"><strong>Hakone Free Pass</strong> · Buy at Odawara Station Jun 1 · ¥6,000 adult · covers Tozan Railway, buses, ropeway discounts · valid 2 days<br><a href="#" onclick="window.location.href='https://maps.google.com/?saddr=Odawara+Station+Japan&daddr=Gora+Station+Hakone+Japan&dirflg=r';return false;" class="learn-more" style="margin-left:4px;">🚆 Transit times</a> <a href="#" onclick="window.location.href='https://maps.google.com/?saddr=Gora+Station+Hakone+Japan&daddr=Odawara+Station+Japan&dirflg=r';return false;" class="learn-more" style="margin-left:4px;">🚆 Transit times</a></div></div>
+    <div class="tr-row"><div class="tr-label">Gora taxi</div><div class="tr-content">Taxi from Gora Station to Hotel Indigo · ~10 min · ~¥1,500</div></div>
+  </div>
+
+  <div class="section-lbl">IC Cards (Suica)</div>
+  <div class="cards">
+    <div class="card"><div class="card-hd" onclick="toggleCard(this)"><div class="card-icon train">🪙</div><div class="card-text"><div class="card-title">Suica Setup</div><div class="card-sub">3 phones ready · physical card for Nikki at airport</div></div><span class="card-badge badge-ok">Ready</span></div><div class="card-body"><p>Rohan + wife + 17-yr-old: Suica added to Apple Wallet (use Amex to load). Enable Express Mode: Settings → Wallet & Apple Pay → Express Transit Card → Suica. Load ¥3,000 each — top up at any station vending machine anytime.<br><br>Nikki: Get physical Suica card at Narita airport or any JR vending machine on arrival. Load ¥5,000.<br><br>Works for all subways, buses, Kintetsu, JR local trains, and convenience stores.</p></div></div>
+  </div>
+
+  <div class="section-lbl">🧳 Takkyubin Luggage Forwarding</div>
+  <div class="cards">
+    <div class="card"><div class="card-hd" onclick="toggleCard(this)"><div class="card-icon info">📦</div><div class="card-text"><div class="card-title">How Takkyubin Works</div><div class="card-sub">Ship big bags overnight · ~¥2,500–3,000/bag · next-day delivery</div></div><span class="card-badge badge-ok">Use This!</span></div><div class="card-body"><p>Hand your 2 large suitcases to the hotel front desk the evening before each city change. Tell them your next hotel name and address. Fill out a short form, pay ~¥2,500–3,000 per bag. Bags arrive at your next hotel the following day. Travel on trains with carry-ons only.</p></div></div>
+    <div class="card"><div class="card-hd" onclick="toggleCard(this)"><div class="card-icon alert">⚠️</div><div class="card-text"><div class="card-title">Takkyubin Schedule</div><div class="card-sub">Drop off at front desk before 9pm each city-change eve</div></div><span class="card-badge badge-book">Critical</span></div><div class="card-body">
+      <p><strong>Mon May 25 evening</strong> → Ship to Ace Hotel Kyoto (arrive May 26)<br>
+      <strong>Fri May 29 evening</strong> → Ship to Machia Hotel Takayama (arrive May 30)<br>
+      <strong>Sun May 31 evening</strong> → Ship to Hotel Indigo Hakone Gora (arrive Jun 1)<br>
+      <strong>Tue Jun 2 evening</strong> → Ship to Tokyo Edition Toranomon (arrive Jun 3)</p>
+      <p style="margin-top:8px;">Pack overnight essentials (charger, toiletries, change of clothes) in carry-on to travel with on the train.</p>
+    </div></div>
+  </div>
+</div>
+
+<!-- NOTES -->
+<div class="view" id="view-notes">
+  <div class="section-lbl">Hotels</div>
+  <div class="cards">
+    <div class="card"><div class="card-hd" onclick="toggleCard(this)"><div class="card-icon info">🏨</div><div class="card-text"><div class="card-title">Asakusa View Hotel Annex Roku</div><div class="card-sub">Tokyo I · May 23–26</div></div></div><div class="card-body"><p>Asakusa neighbourhood. 5 min walk to Tobu Asakusa Station (Spacia Kinu). Senso-ji walking distance. Free lounge 3–10pm with Skytree views. 7-Eleven, Observation Terrace (closes 8pm), and sumo area all within easy reach.</p></div></div>
+    <div class="card"><div class="card-hd" onclick="toggleCard(this)"><div class="card-icon info">🏨</div><div class="card-text"><div class="card-title">Ace Hotel Kyoto</div><div class="card-sub">Kyoto · May 26–30</div></div></div><div class="card-body"><p>Central Kyoto. Close to Nishiki Market, Gion, Pontocho. 15 min walk to Kyoto Station for day trips to Nara and Osaka.</p></div></div>
+    <div class="card"><div class="card-hd" onclick="toggleCard(this)"><div class="card-icon info">🏨</div><div class="card-text"><div class="card-title">Machia Hotel Takayama</div><div class="card-sub">Takayama · May 30 – Jun 1</div></div></div><div class="card-body"><p>Central Takayama near Sanmachi Suji old streets. Walking distance to old town. Base for Shirakawa-go day trip.</p></div></div>
+    <div class="card"><div class="card-hd" onclick="toggleCard(this)"><div class="card-icon info">🏨</div><div class="card-text"><div class="card-title">Hotel Indigo Hakone Gora</div><div class="card-sub">Hakone · Jun 1–3 · Leave 8am Jun 3</div></div></div><div class="card-body"><p>Hakone Gora area. Onsen access. Near Owakudani ropeway. Hakone Free Pass covers all local transport. 10 min taxi from Gora Station (~¥1,500).</p></div></div>
+    <div class="card"><div class="card-hd" onclick="toggleCard(this)"><div class="card-icon info">🏨</div><div class="card-text"><div class="card-title">Tokyo Edition Toranomon</div><div class="card-sub">Tokyo II · Jun 3–6 · Leave 7:30am Jun 6</div></div></div><div class="card-body"><p>Central Tokyo, Toranomon. Stunning Tokyo Tower views. Family-friendly. Close to Ginza (10 min). 30 min to Florilège. 25 min to Toyosu (teamLab).</p></div></div>
+  </div>
+  <div class="section-lbl">Flights</div>
+  <div style="margin:0 12px;background:var(--white);border:1px solid var(--mist);border-radius:10px;overflow:hidden;">
+    <div style="background:var(--ink);padding:13px 14px;"><div style="font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:3px;">Outbound</div><div style="font-size:14px;color:var(--white);">Fri May 22 · ATL 6:30 AM → SFO → NRT Terminal 1</div><div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:2px;">United Airlines · Arrives Sat May 23 · 3:25 PM · Cross International Date Line</div></div>
+    <div style="padding:13px 14px;"><div style="font-size:10px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-bottom:3px;">Return</div><div style="font-size:14px;color:var(--ink);">Sat Jun 6 · HND 10:20 AM → IAD → ATL</div><div style="font-size:12px;color:var(--dim);margin-top:2px;">IAD layover 2h 30m · Atlanta arrive 2:34 PM · Jumbo Taxi from hotel 7:30 AM</div></div>
+  </div>
+  <div class="section-lbl">Key Tips</div>
+  <div class="tips-box" style="margin-bottom:16px;"><h4>Good to Know</h4><ul>
+    <li>Observation Terrace Asakusa: closes at 8:00 PM · FREE · 8th floor · 5 min walk from hotel</li>
+    <li>teamLab Planets: slip-on shoes · Water area = bare feet · allow 3 hours</li>
+    <li>Vegan Ramen UZU: teamLab ticket required · walk-in only · ~20 min wait</li>
+    <li>Edo Wonderland: arrive by 10am · costumes before shows · Oiran Parade time varies</li>
+    <li>Sumo: look for TNK placards · Edo Noren entrance · Ryogoku Station West Exit</li>
+    <li>Harajuku boba: Tiger Sugar (Omotesando Hills) or Gong Cha</li>
+    <li>Hakone Free Pass: buy at Odawara Station · covers all local Hakone transport</li>
+    <li>Nara deer crackers (shika senbei): ¥150 · buy at park entrance · deer will bow!</li>
+    <li>Kushikatsu golden rule: NEVER double-dip into the communal sauce</li>
+    <li>All Nara/Osaka trains: Suica tap · no reservation · use Google Maps</li>
+    <li>Takkyubin: drop bags at front desk before 9pm · arrives next hotel next day</li>
+    <li>Ekiben (station bento): buy at Tokyo Station before Shinkansen — no food carts on board</li>
+    <li>Nagoya transfers: large busy station · allow 30–40 min · signs in English</li>
+    <li>Onsen etiquette: wash before entering · no swimwear · tattoos may restrict public onsen access</li>
+    <li>Mikimoto Ginza closes 7pm · most Ginza shops close 8pm</li>
+  </ul></div>
+  <div style="text-align:center;font-size:11px;color:var(--dim);padding:8px;">Version 8 · May 2026</div>
+</div>
+
+<div class="bottom-bar">
+  <button class="bot-btn active" id="bot-schedule" onclick="showView('schedule')"><span class="bot-icon">📅</span>Schedule</button>
+  <button class="bot-btn" id="bot-explore" onclick="showView('explore')"><span class="bot-icon">🗾</span>Explore</button>
+  <button class="bot-btn" id="bot-bookings" onclick="showView('bookings')"><span class="bot-icon">🎟️</span>Bookings</button>
+  <button class="bot-btn" id="bot-dining" onclick="showView('dining')"><span class="bot-icon">🍜</span>Dining</button>
+  <button class="bot-btn" id="bot-transport" onclick="showView('transport')"><span class="bot-icon">🚄</span>Transport</button>
+  <button class="bot-btn" id="bot-notes" onclick="showView('notes')"><span class="bot-icon">📝</span>Notes</button>
+</div>
+
+<script>
+
+
+function showView(n){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.querySelectorAll('.bot-btn').forEach(b=>b.classList.remove('active'));document.getElementById('view-'+n).classList.add('active');document.getElementById('bot-'+n).classList.add('active');window.scrollTo(0,0);}
+function showCity(id,btn){document.querySelectorAll('.city-section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('#cityNav .tab-btn').forEach(b=>{b.classList.remove('active');b.style.color='var(--dim)';});document.getElementById('city-'+id).classList.add('active');btn.classList.add('active');btn.style.color='var(--ink)';}
+function toggleCard(hd){hd.nextElementSibling.classList.toggle('open');}
+function toggleAct(id){
+  var el=document.getElementById(id);
+  if(!el)return;
+  var isOpen=el.classList.contains('open');
+  document.querySelectorAll('.dt-act-detail').forEach(function(d){d.classList.remove('open');});
+  if(!isOpen)el.classList.add('open');
+}
+</script>
+</body>
+</html>
