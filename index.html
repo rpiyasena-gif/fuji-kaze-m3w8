@@ -133,15 +133,15 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;f
         <line id="line-kt" x1="40.2" y1="74.3" x2="47.9" y2="66.3" stroke="#c8a040" stroke-width="0.22" stroke-dasharray="1.2,1.2" opacity="0"/>
         <line id="line-th" x1="47.9" y1="66.3" x2="57.5" y2="72.3" stroke="#c8a040" stroke-width="0.22" stroke-dasharray="1.2,1.2" opacity="0"/>
         <line id="line-ht" x1="57.5" y1="72.3" x2="61.3" y2="69.6" stroke="#c8a040" stroke-width="0.22" stroke-dasharray="1.2,1.2" opacity="0"/>
-        <circle id="cdot-tokyo"    cx="61.3" cy="69.6" r="0.9" fill="#e03040" opacity="0"/>
-        <circle id="cdot-kyoto"    cx="40.2" cy="74.3" r="0.9" fill="#e03040" opacity="0"/>
-        <text   id="ctxt-kyoto"    x="41.7"  y="73.39999999999999" font-family="sans-serif" font-size="2.2" font-weight="600" fill="white" opacity="0" style="pointer-events:none;">Kyoto</text>
-        <circle id="cdot-osaka"    cx="38.8" cy="75.9" r="0.9" fill="#e03040" opacity="0"/>
-        <circle id="cdot-takayama" cx="47.9" cy="66.3" r="0.9" fill="#e03040" opacity="0"/>
-        <text   id="ctxt-takayama" x="49.4"  y="65.7" font-family="sans-serif" font-size="2.2" font-weight="600" fill="white" opacity="0" style="pointer-events:none;">Takayama</text>
-        <circle id="cdot-hakone"   cx="57.5" cy="72.3" r="0.9" fill="#e03040" opacity="0"/>
-        <text   id="ctxt-hakone"   x="59.0"  y="74.8" font-family="sans-serif" font-size="2.2" font-weight="600" fill="white" opacity="0" style="pointer-events:none;">Hakone</text>
-        <circle id="pulse-tokyo"   cx="61.3" cy="69.6" r="0.9" fill="none" stroke="#e03040" stroke-width="0.5" opacity="0"/>
+        <circle id="cdot-tokyo"    cx="61.3" cy="69.6" r="0.6" fill="#e03040" opacity="0"/>
+        <circle id="cdot-kyoto"    cx="40.2" cy="74.3" r="0.6" fill="#e03040" opacity="0"/>
+        <text   id="ctxt-kyoto"    x="33.5"  y="73.2" font-family="sans-serif" font-size="2.2" font-weight="600" fill="#e0e0e0" stroke="black" stroke-width="0.4" paint-order="stroke" opacity="0" style="pointer-events:none;">Kyoto</text>
+        <circle id="cdot-osaka"    cx="38.8" cy="75.9" r="0.6" fill="#e03040" opacity="0"/>
+        <circle id="cdot-takayama" cx="47.9" cy="66.3" r="0.6" fill="#e03040" opacity="0"/>
+        <text   id="ctxt-takayama" x="41.5"  y="64.8" font-family="sans-serif" font-size="2.2" font-weight="600" fill="#e0e0e0" stroke="black" stroke-width="0.4" paint-order="stroke" opacity="0" style="pointer-events:none;">Takayama</text>
+        <circle id="cdot-hakone"   cx="57.5" cy="72.3" r="0.6" fill="#e03040" opacity="0"/>
+        <text   id="ctxt-hakone"   x="59.0"  y="74.8" font-family="sans-serif" font-size="2.2" font-weight="600" fill="#e0e0e0" stroke="black" stroke-width="0.4" paint-order="stroke" opacity="0" style="pointer-events:none;">Hakone</text>
+        <circle id="pulse-tokyo"   cx="61.3" cy="69.6" r="0.6" fill="none" stroke="#e03040" stroke-width="0.5" opacity="0"/>
         <circle cx="61.3" cy="69.6" r="5" fill="transparent" style="cursor:pointer" onclick="tapCity('tokyo')"/>
         <circle cx="39.5" cy="75.1" r="5" fill="transparent" style="cursor:pointer" onclick="tapCity('kyoto')"/>
         <circle cx="47.9" cy="66.3" r="5" fill="transparent" style="cursor:pointer" onclick="tapCity('takayama')"/>
@@ -627,14 +627,14 @@ function toggleMap() {
   var el = document.getElementById('map-overlay');
   var now = Date.now();
   if (el.style.display === 'none') {
-    // Set scale(1) with no transition BEFORE showing
     var zw = document.getElementById('map-zoom-wrapper');
-    zw.style.transition = 'none';
-    zw.style.transform = 'scale(1)';
-    el.style.display = 'block';
     var elapsed = now - mapLastAnim;
     if (mapLastAnim === 0 || elapsed > 5 * 60 * 1000) {
+      // Full animation: reset everything, show wide, then zoom
       resetMapState();
+      zw.style.transition = 'none';
+      zw.style.transform = 'scale(1)';
+      el.style.display = 'block';
       setTimeout(startMapAnimation, 300);
     } else {
       showAllDots();
@@ -699,15 +699,14 @@ function startMapAnimation() {
   if (mapAnimRunning) return;
   mapAnimRunning = true;
   mapLastAnim = Date.now();
-  // Enable transition after brief delay (ensures scale(1) is rendered first)
+  // Enable smooth zoom transition, pause briefly on full Japan, then zoom in
   setTimeout(function() {
     var zw3 = document.getElementById('map-zoom-wrapper');
     zw3.style.transition = 'transform 2.2s cubic-bezier(0.25,0.1,0.25,1)';
-    // Pause on full Japan view, then zoom in
     setTimeout(function() {
       zw3.style.transform = 'scale(2.4)';
-    }, 1200);
-  }, 100);
+    }, 1000);
+  }, 150);
 
   // Step 2: After zoom settles (1.2 + 1.8 = 3s), show train at Tokyo
   setTimeout(function() {
@@ -725,7 +724,7 @@ function startMapAnimation() {
     ];
     animateRoute(route, 1);
     // After full route done, show osaka dot and finish up
-    var totalTime = 2000*4 + 1800;
+    var totalTime = 2900*4 + 800;
     setTimeout(function() {
       var td2 = document.getElementById('train-dot'); if(td2) td2.style.opacity=0;
       document.getElementById('map-restart-btn').style.display = 'block';
@@ -739,27 +738,41 @@ function animateRoute(route, idx) {
   if (idx >= route.length) return;
   var step = route[idx];
   var prev = route[idx-1];
-  if (step.line) {
-    var ln = document.getElementById(step.line); if(ln) ln.style.opacity=0.7;
+
+  // Step 1: Show destination city dot + label (300ms pause)
+  if (!(step.id === 'tokyo' && idx === 4)) {
+    showCityDot(step.id);
   }
-  var td = document.getElementById('train-dot');
-  var sx = parseFloat(prev.cx), sy = parseFloat(prev.cy);
-  var ex = parseFloat(step.cx), ey = parseFloat(step.cy);
-  var dur = 1800, t0 = null;
-  function move(ts) {
-    if (!t0) t0 = ts;
-    var p = Math.min((ts-t0)/dur, 1);
-    var e = p<0.5 ? 2*p*p : -1+(4-2*p)*p;
-    td.setAttribute('cx', sx+(ex-sx)*e);
-    td.setAttribute('cy', sy+(ey-sy)*e);
-    if (p < 1) {
-      requestAnimationFrame(move);
-    } else {
-      if (!(step.id==='tokyo' && idx===4)) showCityDot(step.id);
-      setTimeout(function(){ animateRoute(route, idx+1); }, step.delay - 1800);
+
+  // Step 2: After 400ms, show the connecting line
+  setTimeout(function() {
+    if (step.line) {
+      var ln = document.getElementById(step.line);
+      if (ln) ln.style.opacity = 0.7;
     }
-  }
-  requestAnimationFrame(move);
+
+    // Step 3: After another 400ms, move the train
+    setTimeout(function() {
+      var td = document.getElementById('train-dot');
+      var sx = parseFloat(prev.cx), sy = parseFloat(prev.cy);
+      var ex = parseFloat(step.cx), ey = parseFloat(step.cy);
+      var dur = 1800, t0 = null;
+      function move(ts) {
+        if (!t0) t0 = ts;
+        var p = Math.min((ts - t0) / dur, 1);
+        var e = p < 0.5 ? 2*p*p : -1+(4-2*p)*p;
+        td.setAttribute('cx', sx + (ex-sx)*e);
+        td.setAttribute('cy', sy + (ey-sy)*e);
+        if (p < 1) {
+          requestAnimationFrame(move);
+        } else {
+          // Train arrived — move to next leg after brief pause
+          setTimeout(function() { animateRoute(route, idx+1); }, 300);
+        }
+      }
+      requestAnimationFrame(move);
+    }, 400);
+  }, 400);
 }
 
 function showCityDot(id) {
