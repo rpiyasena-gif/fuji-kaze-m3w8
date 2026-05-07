@@ -117,7 +117,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;f
 
 <!-- SCHEDULE -->
 <div class="view active" id="view-schedule">
-  <div class="section-lbl" style="display:flex;justify-content:space-between;align-items:center;padding-right:16px;">Full Itinerary <button id="map-toggle-btn" onclick="toggleMap()" style="background:none;border:none;font-size:18px;cursor:pointer;padding:0;color:#c8a040;">🗺️</button></div>
+  <div class="section-lbl" style="display:flex;justify-content:space-between;align-items:center;padding-right:16px;">Full Itinerary <button id="map-toggle-btn" onclick="toggleMap()" style="background:rgba(200,160,64,0.12);border:1px solid #c8a040;border-radius:8px;font-size:22px;cursor:pointer;padding:4px 10px;color:#c8a040;line-height:1;">🗺️</button></div>
 
 <div id="map-overlay" style="display:none;margin:0 12px 12px;border-radius:10px;overflow:hidden;border:1px solid #1e2a3a;position:relative;">
   <div style="position:relative;width:100%;background:#080c14;overflow:hidden;" id="map-container">
@@ -618,7 +618,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;f
 <script>
 
 
-function showView(n){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.querySelectorAll('.bot-btn').forEach(b=>b.classList.remove('active'));document.getElementById('view-'+n).classList.add('active');document.getElementById('bot-'+n).classList.add('active');var chips=document.getElementById('scheduleChips');if(chips)chips.style.display=n==='schedule'?'flex':'none';window.scrollTo(0,0);}
+function showView(n){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.querySelectorAll('.bot-btn').forEach(b=>b.classList.remove('active'));document.getElementById('view-'+n).classList.add('active');document.getElementById('bot-'+n).classList.add('active');var chips=document.getElementById('scheduleChips');if(chips)chips.style.display=n==='schedule'?'flex':'none';closeMap();window.scrollTo(0,0);}
 function showCity(id,btn){document.querySelectorAll('.city-section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('#cityNav .tab-btn').forEach(b=>{b.classList.remove('active');b.style.color='rgba(255,255,255,0.3)';});document.getElementById('city-'+id).classList.add('active');btn.classList.add('active');btn.style.color='var(--white)';}
 function toggleCard(hd){hd.nextElementSibling.classList.toggle('open');}
 
@@ -626,73 +626,73 @@ var mapLastAnim = 0;
 var mapAnimRunning = false;
 var mapPulseInterval = null;
 
-function toggleMap() {{
+function toggleMap() {
   var el = document.getElementById('map-overlay');
   var now = Date.now();
-  if (el.style.display === 'none') {{
+  if (el.style.display === 'none') {
     el.style.display = 'block';
     var elapsed = now - mapLastAnim;
-    if (mapLastAnim === 0 || elapsed > 5 * 60 * 1000) {{
+    if (mapLastAnim === 0 || elapsed > 5 * 60 * 1000) {
       // >5 min or never played - full animation
       resetMapState(false);
       setTimeout(startMapAnimation, 400);
-    }} else {{
+    } else {
       // <5 min - show all dots immediately, stay zoomed in
       showAllDots();
       document.getElementById('map-zoom-wrapper').style.transform = 'scale(1.45)';
       document.getElementById('map-restart-btn').style.display = 'block';
-    }}
-  }} else {{
+    }
+  } else {
     closeMap();
-  }}
-}}
+  }
+}
 
-function closeMap() {{
+function closeMap() {
   var el = document.getElementById('map-overlay');
   el.style.display = 'none';
-  if (mapPulseInterval) {{ clearInterval(mapPulseInterval); mapPulseInterval = null; }}
-}}
+  if (mapPulseInterval) { clearInterval(mapPulseInterval); mapPulseInterval = null; }
+}
 
-function resetMapState(keepZoom) {{
+function resetMapState(keepZoom) {
   // Hide all dots and lines
-  ['tokyo','kyoto','takayama','hakone','nikko','osaka','shirakawa'].forEach(function(c) {{
+  ['tokyo','kyoto','takayama','hakone','nikko','osaka','shirakawa'].forEach(function(c) {
     var d = document.getElementById('cdot-'+c); if(d) d.style.opacity=0;
-  }});
-  ['line1','line2','line3','line4','dt1','dt2','dt3'].forEach(function(l) {{
+  });
+  ['line1','line2','line3','line4','dt1','dt2','dt3'].forEach(function(l) {
     var el = document.getElementById(l); if(el) el.style.opacity=0;
-  }});
-  var td = document.getElementById('train-dot'); if(td) {{ td.style.opacity=0; }}
-  var pt = document.getElementById('pulse-tokyo'); if(pt) {{ pt.style.opacity=0; }}
+  });
+  var td = document.getElementById('train-dot'); if(td) { td.style.opacity=0; }
+  var pt = document.getElementById('pulse-tokyo'); if(pt) { pt.style.opacity=0; }
   document.getElementById('map-restart-btn').style.display='none';
   document.getElementById('map-city-info').innerHTML='Tap a city to explore';
   if(!keepZoom) document.getElementById('map-zoom-wrapper').style.transform='scale(1)';
-  if(mapPulseInterval) {{ clearInterval(mapPulseInterval); mapPulseInterval=null; }}
-}}
+  if(mapPulseInterval) { clearInterval(mapPulseInterval); mapPulseInterval=null; }
+}
 
-function showAllDots() {{
-  ['tokyo','kyoto','takayama','hakone','nikko','osaka','shirakawa'].forEach(function(c) {{
+function showAllDots() {
+  ['tokyo','kyoto','takayama','hakone','nikko','osaka','shirakawa'].forEach(function(c) {
     var d = document.getElementById('cdot-'+c); if(d) d.style.opacity=1;
-  }});
-  ['line1','line2','line3','line4','dt1','dt2','dt3'].forEach(function(l) {{
+  });
+  ['line1','line2','line3','line4','dt1','dt2','dt3'].forEach(function(l) {
     var el = document.getElementById(l); if(el) el.style.opacity=0.7;
-  }});
+  });
   startTokoyoPulse();
-}}
+}
 
-function startTokoyoPulse() {{
+function startTokoyoPulse() {
   var pt = document.getElementById('pulse-tokyo');
   if(!pt) return;
   var r = 1.4, growing = true;
-  mapPulseInterval = setInterval(function() {{
+  mapPulseInterval = setInterval(function() {
     r = growing ? r+0.08 : r-0.08;
     if(r>3.5) growing=false;
     if(r<1.4) growing=true;
     pt.setAttribute('r', r);
     pt.style.opacity = 1-(r-1.4)/2.1;
-  }}, 30);
-}}
+  }, 30);
+}
 
-function startMapAnimation() {{
+function startMapAnimation() {
   if(mapAnimRunning) return;
   mapAnimRunning = true;
   resetMapState(false);
@@ -700,23 +700,23 @@ function startMapAnimation() {{
 
   // Cities: [id, cx, cy, lineId, delay after prev]
   var route = [
-    {{id:'tokyo',    cx:81.0, cy:52.0, lineId:null,   dt:null,   dtId:null,        delay:0}},
-    {{id:'kyoto',    cx:32.6, cy:63.0, lineId:'line1', dt:null,   dtId:null,        delay:2000}},
-    {{id:'takayama', cx:43.8, cy:40.5, lineId:'line2', dt:null,   dtId:null,        delay:2000}},
-    {{id:'hakone',   cx:63.0, cy:63.0, lineId:'line3', dt:null,   dtId:null,        delay:2000}},
-    {{id:'tokyo',    cx:81.0, cy:52.0, lineId:'line4', dt:null,   dtId:null,        delay:2000}},
+    {id:'tokyo',    cx:81.0, cy:52.0, lineId:null,   dt:null,   dtId:null,        delay:0},
+    {id:'kyoto',    cx:32.6, cy:63.0, lineId:'line1', dt:null,   dtId:null,        delay:2000},
+    {id:'takayama', cx:43.8, cy:40.5, lineId:'line2', dt:null,   dtId:null,        delay:2000},
+    {id:'hakone',   cx:63.0, cy:63.0, lineId:'line3', dt:null,   dtId:null,        delay:2000},
+    {id:'tokyo',    cx:81.0, cy:52.0, lineId:'line4', dt:null,   dtId:null,        delay:2000},
   ];
 
   // After route done, show day trip lines and dots
   var totalRouteTime = 500 + 2000*4 + 800;
 
   // Zoom in after 800ms
-  setTimeout(function() {{
+  setTimeout(function() {
     document.getElementById('map-zoom-wrapper').style.transform='scale(1.45)';
-  }}, 800);
+  }, 800);
 
   // Show train dot at Tokyo after zoom
-  setTimeout(function() {{
+  setTimeout(function() {
     var td = document.getElementById('train-dot');
     td.setAttribute('cx', 81.0);
     td.setAttribute('cy', 52.0);
@@ -725,36 +725,36 @@ function startMapAnimation() {{
     showCityDot('tokyo');
     // Start moving
     animateRoute(route, 1);
-  }}, 2000);
+  }, 2000);
 
   // After full route, show day trip lines and dots
-  setTimeout(function() {{
-    ['dt1','dt2','dt3'].forEach(function(l) {{
+  setTimeout(function() {
+    ['dt1','dt2','dt3'].forEach(function(l) {
       var el=document.getElementById(l); if(el) el.style.opacity=0.5;
-    }});
-    setTimeout(function() {{
-      ['nikko','osaka','shirakawa'].forEach(function(c) {{
+    });
+    setTimeout(function() {
+      ['nikko','osaka','shirakawa'].forEach(function(c) {
         var d=document.getElementById('cdot-'+c); if(d) d.style.opacity=1;
-      }});
-    }}, 400);
+      });
+    }, 400);
     // Hide train dot
     var td=document.getElementById('train-dot'); if(td) td.style.opacity=0;
     document.getElementById('map-restart-btn').style.display='block';
     startTokoyoPulse();
     mapAnimRunning = false;
-  }}, totalRouteTime + 1000);
-}}
+  }, totalRouteTime + 1000);
+}
 
-function animateRoute(route, idx) {{
+function animateRoute(route, idx) {
   if(idx >= route.length) return;
   var step = route[idx];
   var prev = route[idx-1];
 
   // Show line from prev to current
-  if(step.lineId) {{
+  if(step.lineId) {
     var line = document.getElementById(step.lineId);
     if(line) line.style.opacity=0.7;
-  }}
+  }
 
   // Move train dot from prev to current over 1.8s
   var td = document.getElementById('train-dot');
@@ -763,7 +763,7 @@ function animateRoute(route, idx) {{
   var duration = 1800;
   var startTime = null;
 
-  function moveTrain(timestamp) {{
+  function moveTrain(timestamp) {
     if(!startTime) startTime = timestamp;
     var progress = Math.min((timestamp - startTime) / duration, 1);
     // ease in-out
@@ -772,24 +772,24 @@ function animateRoute(route, idx) {{
     var cy = startY + (endY-startY)*ease;
     td.setAttribute('cx', cx);
     td.setAttribute('cy', cy);
-    if(progress < 1) {{
+    if(progress < 1) {
       requestAnimationFrame(moveTrain);
-    }} else {{
+    } else {
       // Arrived - show city dot (if not tokyo second visit)
       if(!(step.id==='tokyo' && idx===4)) showCityDot(step.id);
       // Wait then go to next
-      setTimeout(function() {{ animateRoute(route, idx+1); }}, step.delay - 1800);
-    }}
-  }}
+      setTimeout(function() { animateRoute(route, idx+1); }, step.delay - 1800);
+    }
+  }
   requestAnimationFrame(moveTrain);
-}}
+}
 
-function showCityDot(id) {{
+function showCityDot(id) {
   var d = document.getElementById('cdot-'+id);
   if(d) d.style.opacity=1;
-}}
+}
 
-var cityInfo = {{
+var cityInfo = {
   tokyo: '<strong style="color:#e03040">Tokyo</strong> · <span style="color:#c8a040">May 23–26 · Jun 3–6</span> · Asakusa View Hotel + Tokyo Edition<br><span style="color:#4a6080;font-size:11px;">Tap again to open in Explore →</span>',
   kyoto: '<strong style="color:#e03040">Kyoto</strong> · <span style="color:#c8a040">May 26–30</span> · Ace Hotel Kyoto<br><span style="color:#4a6080;font-size:11px;">Tap again to open in Explore →</span>',
   takayama: '<strong style="color:#e03040">Takayama</strong> · <span style="color:#c8a040">May 30–Jun 1</span> · Machia Hotel<br><span style="color:#4a6080;font-size:11px;">Tap again to open in Explore →</span>',
@@ -797,37 +797,37 @@ var cityInfo = {{
   nikko: '<strong style="color:#c8a040">Nikko</strong> · Day trip Mon May 25 · Edo Wonderland<br><span style="color:#4a6080;font-size:11px;">Tap again → Tokyo I in Explore</span>',
   osaka: '<strong style="color:#c8a040">Nara + Osaka</strong> · Day trip Fri May 29 · Dotonbori · Castle · Shinsekai<br><span style="color:#4a6080;font-size:11px;">Tap again → Kyoto in Explore</span>',
   shirakawa: '<strong style="color:#c8a040">Shirakawa-go</strong> · Day trip Sun May 31 · UNESCO villages<br><span style="color:#4a6080;font-size:11px;">Tap again → Takayama in Explore</span>',
-}};
+};
 var lastTapped = null;
-function tapCity(id) {{
+function tapCity(id) {
   var info = document.getElementById('map-city-info');
-  if(lastTapped === id) {{
-    var navMap = {{
-      tokyo: function(){{ showView('explore'); showCity('tokyo1', document.querySelectorAll('#cityNav .tab-btn')[0]); }},
-      kyoto: function(){{ showView('explore'); showCity('kyoto', document.querySelectorAll('#cityNav .tab-btn')[1]); }},
-      takayama: function(){{ showView('explore'); showCity('takayama', document.querySelectorAll('#cityNav .tab-btn')[2]); }},
-      hakone: function(){{ showView('explore'); showCity('hakone', document.querySelectorAll('#cityNav .tab-btn')[3]); }},
-      nikko: function(){{ showView('explore'); showCity('tokyo1', document.querySelectorAll('#cityNav .tab-btn')[0]); }},
-      osaka: function(){{ showView('explore'); showCity('kyoto', document.querySelectorAll('#cityNav .tab-btn')[1]); }},
-      shirakawa: function(){{ showView('explore'); showCity('takayama', document.querySelectorAll('#cityNav .tab-btn')[2]); }},
-    }};
+  if(lastTapped === id) {
+    var navMap = {
+      tokyo: function(){ showView('explore'); showCity('tokyo1', document.querySelectorAll('#cityNav .tab-btn')[0]); },
+      kyoto: function(){ showView('explore'); showCity('kyoto', document.querySelectorAll('#cityNav .tab-btn')[1]); },
+      takayama: function(){ showView('explore'); showCity('takayama', document.querySelectorAll('#cityNav .tab-btn')[2]); },
+      hakone: function(){ showView('explore'); showCity('hakone', document.querySelectorAll('#cityNav .tab-btn')[3]); },
+      nikko: function(){ showView('explore'); showCity('tokyo1', document.querySelectorAll('#cityNav .tab-btn')[0]); },
+      osaka: function(){ showView('explore'); showCity('kyoto', document.querySelectorAll('#cityNav .tab-btn')[1]); },
+      shirakawa: function(){ showView('explore'); showCity('takayama', document.querySelectorAll('#cityNav .tab-btn')[2]); },
+    };
     if(navMap[id]) navMap[id]();
     lastTapped = null;
     return;
-  }}
+  }
   info.innerHTML = cityInfo[id] || 'Tap a city to explore';
   lastTapped = id;
-}}
+}
 
 // Close map on tab switch or inactivity
-document.addEventListener('visibilitychange', function() {{
+document.addEventListener('visibilitychange', function() {
   if(document.hidden) closeMap();
-}});
+});
 var inactivityTimer = null;
-function resetInactivity() {{
+function resetInactivity() {
   clearTimeout(inactivityTimer);
   inactivityTimer = setTimeout(closeMap, 60000);
-}}
+}
 document.addEventListener('touchstart', resetInactivity);
 document.addEventListener('click', resetInactivity);
 resetInactivity();
