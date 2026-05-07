@@ -135,12 +135,12 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;f
         <line id="line-ht" x1="57.5" y1="71.9" x2="61.3" y2="69.2" stroke="#c8a040" stroke-width="0.22" stroke-dasharray="1.2,1.2" opacity="0"/>
         <circle id="cdot-tokyo"    cx="61.3" cy="69.2" r="0.6" fill="#e03040" opacity="0"/>
         <circle id="cdot-kyoto"    cx="40.2" cy="73.9" r="0.6" fill="#e03040" opacity="0"/>
-        <text   id="ctxt-kyoto"    x="33.5"  y="73.2" font-family="sans-serif" font-size="1.7" font-weight="600" fill="#d0d0d0" stroke="black" stroke-width="0.4" paint-order="stroke" opacity="0" style="pointer-events:none;">Kyoto</text>
+        <text   id="ctxt-kyoto"    x="35.5"  y="73.2" font-family="sans-serif" font-size="1.7" font-weight="600" fill="#d0d0d0" stroke="black" stroke-width="0.4" paint-order="stroke" opacity="0" style="pointer-events:none;">Kyoto</text>
         <circle id="cdot-osaka"    cx="38.8" cy="75.5" r="0.6" fill="#e03040" opacity="0"/>
         <circle id="cdot-takayama" cx="47.9" cy="65.9" r="0.6" fill="#e03040" opacity="0"/>
-        <text   id="ctxt-takayama" x="37.0"  y="64.8" font-family="sans-serif" font-size="1.7" font-weight="600" fill="#d0d0d0" stroke="black" stroke-width="0.4" paint-order="stroke" opacity="0" style="pointer-events:none;">Takayama</text>
+        <text   id="ctxt-takayama" x="39.0"  y="65.3" font-family="sans-serif" font-size="1.7" font-weight="600" fill="#d0d0d0" stroke="black" stroke-width="0.4" paint-order="stroke" opacity="0" style="pointer-events:none;">Takayama</text>
         <circle id="cdot-hakone"   cx="57.5" cy="72.3" r="0.6" fill="#e03040" opacity="0"/>
-        <text   id="ctxt-hakone"   x="59.0"  y="74.8" font-family="sans-serif" font-size="1.7" font-weight="600" fill="#d0d0d0" stroke="black" stroke-width="0.4" paint-order="stroke" opacity="0" style="pointer-events:none;">Hakone</text>
+        <text   id="ctxt-hakone"   x="58.0"  y="73.9" font-family="sans-serif" font-size="1.7" font-weight="600" fill="#d0d0d0" stroke="black" stroke-width="0.4" paint-order="stroke" opacity="0" style="pointer-events:none;">Hakone</text>
         <circle id="pulse-tokyo"   cx="61.3" cy="69.2" r="0.6" fill="none" stroke="#e03040" stroke-width="0.5" opacity="0"/>
         <circle cx="61.3" cy="69.2" r="5" fill="transparent" style="cursor:pointer" onclick="tapCity('tokyo')"/>
         <circle cx="39.5" cy="75.1" r="5" fill="transparent" style="cursor:pointer" onclick="tapCity('kyoto')"/>
@@ -616,7 +616,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;f
 
 
 function showView(n){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.querySelectorAll('.bot-btn').forEach(b=>b.classList.remove('active'));document.getElementById('view-'+n).classList.add('active');document.getElementById('bot-'+n).classList.add('active');var chips=document.getElementById('scheduleChips');if(chips)chips.style.display=n==='schedule'?'flex':'none';
-  if(mapAnimRunning){ mapAnimRunning=false; if(mapLastAnim===0) mapLastAnim=Date.now(); showAllDots(); }
+  if(mapAnimRunning){ if(mapLastAnim===0) mapLastAnim=Date.now(); jumpToAnimEnd(); }
   closeMap();window.scrollTo(0,0);}
 function showCity(id,btn){document.querySelectorAll('.city-section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('#cityNav .tab-btn').forEach(b=>{b.classList.remove('active');b.style.color='rgba(255,255,255,0.3)';});document.getElementById('city-'+id).classList.add('active');btn.classList.add('active');btn.style.color='var(--white)';}
 function toggleCard(hd){hd.nextElementSibling.classList.toggle('open');}
@@ -624,6 +624,28 @@ function toggleCard(hd){hd.nextElementSibling.classList.toggle('open');}
 var mapLastAnim = 0;
 var mapAnimRunning = false;
 var mapPulseInterval = null;
+var mapTimers = [];
+function mapSetTimeout(fn, delay) {
+  var id = setTimeout(fn, delay);
+  mapTimers.push(id);
+  return id;
+}
+function cancelAllMapTimers() {
+  mapTimers.forEach(function(id) { clearTimeout(id); });
+  mapTimers = [];
+}
+function jumpToAnimEnd() {
+  cancelAllMapTimers();
+  cancelAnimationFrame(mapRafId);
+  mapAnimRunning = false;
+  // Show all dots and lines immediately
+  showAllDots();
+  var zw = document.getElementById('map-zoom-wrapper');
+  if (zw) { zw.style.transition = 'none'; zw.style.transform = 'scale(2.4)'; }
+  var td = document.getElementById('train-dot'); if(td) td.style.opacity=0;
+  document.getElementById('map-restart-btn').style.display = 'block';
+}
+var mapRafId = null;
 
 function toggleMap() {
   var el = document.getElementById('map-overlay');
@@ -704,7 +726,8 @@ function startMapAnimation() {
   mapAnimRunning = true;
   mapLastAnim = Date.now();
 
-  // Step 1: Hard reset dots, lines, zoom - all at once before any paint
+  // Step 1: Cancel any running timers, reset everything
+  cancelAllMapTimers();
   resetMapState();
   var zw = document.getElementById('map-zoom-wrapper');
   zw.style.transition = 'none';
@@ -715,16 +738,16 @@ function startMapAnimation() {
   void zw.offsetHeight;
 
   // Step 3: In next tick, enable transition and zoom in after pause
-  setTimeout(function() {
+  mapSetTimeout(function() {
     zw.style.transition = 'transform 2.2s cubic-bezier(0.25,0.1,0.25,1)';
-    setTimeout(function() {
+    mapSetTimeout(function() {
       zw.style.transform = 'scale(2.4)';
     }, 1000);
   }, 50);
 
   // Step 4: After zoom settles, start train
   var trainDelay = 50 + 1000 + 2200 + 200; // 3450ms
-  setTimeout(function() {
+  mapSetTimeout(function() {
     var td = document.getElementById('train-dot');
     td.setAttribute('cx', 61.3); td.setAttribute('cy', 69.2);
     td.style.opacity = 1;
@@ -738,7 +761,7 @@ function startMapAnimation() {
     ];
     animateRoute(route, 1);
     var totalTime = 2900*4 + 800;
-    setTimeout(function() {
+    mapSetTimeout(function() {
       var td2 = document.getElementById('train-dot'); if(td2) td2.style.opacity=0;
       document.getElementById('map-restart-btn').style.display = 'block';
       startTokoyoPulse();
@@ -759,14 +782,14 @@ function animateRoute(route, idx) {
   }
 
   // Step 2: After 400ms, show the connecting line
-  setTimeout(function() {
+  mapSetTimeout(function() {
     if (step.line) {
       var ln = document.getElementById(step.line);
       if (ln) ln.style.opacity = 0.7;
     }
 
     // Step 3: After another 400ms, move the train
-    setTimeout(function() {
+    mapSetTimeout(function() {
       var td = document.getElementById('train-dot');
       var sx = parseFloat(prev.cx), sy = parseFloat(prev.cy);
       var ex = parseFloat(step.cx), ey = parseFloat(step.cy);
@@ -778,13 +801,13 @@ function animateRoute(route, idx) {
         td.setAttribute('cx', sx + (ex-sx)*e);
         td.setAttribute('cy', sy + (ey-sy)*e);
         if (p < 1) {
-          requestAnimationFrame(move);
+          mapRafId = requestAnimationFrame(move);
         } else {
           // Train arrived — move to next leg after brief pause
-          setTimeout(function() { animateRoute(route, idx+1); }, 300);
+          mapSetTimeout(function() { animateRoute(route, idx+1); }, 300);
         }
       }
-      requestAnimationFrame(move);
+      mapRafId = requestAnimationFrame(move);
     }, 400);
   }, 400);
 }
@@ -826,12 +849,9 @@ function tapCity(id) {
 // Auto-close on tab switch or 1 min inactivity
 document.addEventListener('visibilitychange', function() {
   if (document.hidden) {
-    // Mark animation as complete so next open within 5min shows dots immediately
     if (mapAnimRunning) {
-      mapAnimRunning = false;
       if (mapLastAnim === 0) mapLastAnim = Date.now();
-      // Show all dots so zoomed view is ready
-      showAllDots();
+      jumpToAnimEnd();
     }
     closeMap();
   }
