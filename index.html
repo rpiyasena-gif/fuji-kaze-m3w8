@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="apple-touch-icon" href="icon.png">
 <meta name="apple-mobile-web-app-title" content="Japan Trip">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -135,12 +135,12 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;f
         <line id="line-ht" x1="57.5" y1="72.3" x2="61.3" y2="69.6" stroke="#c8a040" stroke-width="0.22" stroke-dasharray="1.2,1.2" opacity="0"/>
         <circle id="cdot-tokyo"    cx="61.3" cy="69.6" r="0.6" fill="#e03040" opacity="0"/>
         <circle id="cdot-kyoto"    cx="40.2" cy="74.3" r="0.6" fill="#e03040" opacity="0"/>
-        <text   id="ctxt-kyoto"    x="33.5"  y="73.2" font-family="sans-serif" font-size="2.2" font-weight="600" fill="#e0e0e0" stroke="black" stroke-width="0.4" paint-order="stroke" opacity="0" style="pointer-events:none;">Kyoto</text>
+        <text   id="ctxt-kyoto"    x="33.5"  y="73.2" font-family="sans-serif" font-size="1.9" font-weight="600" fill="#e0e0e0" stroke="black" stroke-width="0.4" paint-order="stroke" opacity="0" style="pointer-events:none;">Kyoto</text>
         <circle id="cdot-osaka"    cx="38.8" cy="75.9" r="0.6" fill="#e03040" opacity="0"/>
         <circle id="cdot-takayama" cx="47.9" cy="66.3" r="0.6" fill="#e03040" opacity="0"/>
-        <text   id="ctxt-takayama" x="41.5"  y="64.8" font-family="sans-serif" font-size="2.2" font-weight="600" fill="#e0e0e0" stroke="black" stroke-width="0.4" paint-order="stroke" opacity="0" style="pointer-events:none;">Takayama</text>
+        <text   id="ctxt-takayama" x="37.0"  y="64.8" font-family="sans-serif" font-size="1.9" font-weight="600" fill="#e0e0e0" stroke="black" stroke-width="0.4" paint-order="stroke" opacity="0" style="pointer-events:none;">Takayama</text>
         <circle id="cdot-hakone"   cx="57.5" cy="72.3" r="0.6" fill="#e03040" opacity="0"/>
-        <text   id="ctxt-hakone"   x="59.0"  y="74.8" font-family="sans-serif" font-size="2.2" font-weight="600" fill="#e0e0e0" stroke="black" stroke-width="0.4" paint-order="stroke" opacity="0" style="pointer-events:none;">Hakone</text>
+        <text   id="ctxt-hakone"   x="59.0"  y="74.8" font-family="sans-serif" font-size="1.9" font-weight="600" fill="#e0e0e0" stroke="black" stroke-width="0.4" paint-order="stroke" opacity="0" style="pointer-events:none;">Hakone</text>
         <circle id="pulse-tokyo"   cx="61.3" cy="69.6" r="0.6" fill="none" stroke="#e03040" stroke-width="0.5" opacity="0"/>
         <circle cx="61.3" cy="69.6" r="5" fill="transparent" style="cursor:pointer" onclick="tapCity('tokyo')"/>
         <circle cx="39.5" cy="75.1" r="5" fill="transparent" style="cursor:pointer" onclick="tapCity('kyoto')"/>
@@ -651,6 +651,7 @@ function closeMap() {
   var el = document.getElementById('map-overlay');
   if (el) el.style.display = 'none';
   if (mapPulseInterval) { clearInterval(mapPulseInterval); mapPulseInterval = null; }
+  mapAnimRunning = false;
 }
 
 function resetMapState() {
