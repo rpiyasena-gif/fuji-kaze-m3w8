@@ -6,12 +6,14 @@
 <link rel="apple-touch-icon" href="icon.png">
 <meta name="apple-mobile-web-app-title" content="Japan Trip">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#080c14">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Japan 2026 — Family Trip Guide</title>
-<script>try{var _l=localStorage.getItem('sakuraLastShown');if(!_l||(Date.now()-parseInt(_l))>120000){document.documentElement.classList.add('do-fade-in');}}catch(e){}</script>
+<script>document.documentElement.style.background='#080c14';try{var _l=localStorage.getItem('sakuraLastShown');if(!_l||(Date.now()-parseInt(_l))>120000){document.documentElement.classList.add('do-fade-in');}}catch(e){}</script>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
 @keyframes appInitFade{from{opacity:0;}to{opacity:1;}}
-html.do-fade-in .hero,html.do-fade-in .view.active,html.do-fade-in .bottom-bar{animation:appInitFade 1800ms cubic-bezier(.3,.1,.4,.9) both;}
+html.do-fade-in .hero,html.do-fade-in .view.active,html.do-fade-in .bottom-bar{opacity:0;animation:appInitFade 1800ms cubic-bezier(.3,.1,.4,.9) forwards;}
 :root{--ink:#e8eef5;--paper:#080c14;--red:#e03040;--gold:#c8a040;--mist:#1e2a3a;--dim:#8a9ab0;--white:#ffffff;--green:#3a9a54;--orange:#e07030;--surface:#0f1520;--surface2:#141c28;}
 *{box-sizing:border-box;margin:0;padding:0;}
 html{background:var(--paper);font-size:100%;}body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;padding-bottom:92px;}
