@@ -1246,6 +1246,7 @@ function showView(n){
     if(mapAnimRunning){ if(mapLastAnim===0) mapLastAnim=Date.now(); jumpToAnimEnd(); }
     closeMap();
     window.scrollTo(0,0);
+    if(n==='explore') _maybeRestoreExploreState();
     requestAnimationFrame(function(){
       if(clone) clone.style.opacity='0';
       newView.style.opacity='1';
@@ -1264,8 +1265,11 @@ function showView(n){
   },timing.clear);
 }
 function showCity(id,btn){document.querySelectorAll('.city-section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('#cityNav .tab-btn').forEach(b=>{b.classList.remove('active');b.style.color='rgba(255,255,255,0.3)';});document.getElementById('city-'+id).classList.add('active');btn.classList.add('active');btn.style.color='var(--white)';}
-function goToTravel(id){showView('transport');setTimeout(function(){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},1600);}
-function goToDining(id){showView('dining');setTimeout(function(){var el=document.getElementById(id);if(el){document.querySelectorAll('.card-body.open').forEach(function(b){b.classList.remove('open');});var body=el.querySelector('.card-body');if(body)body.classList.add('open');el.scrollIntoView({behavior:'smooth',block:'start'});}},1600);}
+var _exploreReturnState=null;
+function _captureExploreState(){var ev=document.getElementById('view-explore');if(!ev||!ev.classList.contains('active'))return;var ac=document.querySelector('.city-section.active');_exploreReturnState={scroll:window.scrollY,cityId:ac?ac.id.replace('city-',''):null,timestamp:Date.now()};}
+function _maybeRestoreExploreState(){if(!_exploreReturnState)return;if(Date.now()-_exploreReturnState.timestamp>60000){_exploreReturnState=null;return;}var savedScroll=_exploreReturnState.scroll;var savedCity=_exploreReturnState.cityId;_exploreReturnState=null;if(savedCity){var cur=document.querySelector('.city-section.active');if(!cur||cur.id!=='city-'+savedCity){var btns=document.querySelectorAll('#cityNav .tab-btn');for(var i=0;i<btns.length;i++){var oc=btns[i].getAttribute('onclick');if(oc&&oc.indexOf("'"+savedCity+"'")!==-1){btns[i].click();break;}}}}setTimeout(function(){window.scrollTo(0,savedScroll);},100);}
+function goToTravel(id){_captureExploreState();showView('transport');setTimeout(function(){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},1600);}
+function goToDining(id){_captureExploreState();showView('dining');setTimeout(function(){var el=document.getElementById(id);if(el){document.querySelectorAll('.card-body.open').forEach(function(b){b.classList.remove('open');});var body=el.querySelector('.card-body');if(body)body.classList.add('open');el.scrollIntoView({behavior:'smooth',block:'start'});}},1600);}
 function toggleCard(hd){
   var b=hd.nextElementSibling;
   var isOpen=b&&b.classList.contains('open');
