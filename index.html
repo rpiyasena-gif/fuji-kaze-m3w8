@@ -402,9 +402,6 @@ to{stroke-dashoffset:0;}}
       <div class="dt-row dining"><div class="dt-main"><div class="dt-time">5:30 PM</div><div class="dt-text">Casual Asakusa dinner · Sometaro nearby · walk-in · early night<button class="act-btn dining" onclick="goToDining('din-may25-asakusa')">🍜 Dining →</button></div></div></div>
       <div class="dt-row reminder"><div class="dt-main"><div class="dt-time">🌙</div><div class="dt-text">🧳 Ship large bags to Ace Hotel Kyoto at hotel front desk before 9pm · next-day delivery</div></div></div>
     </div>
-    <div class="tips-box" style="margin-top:12px;margin-bottom:8px"><h4>Tokyo I Notes</h4><ul>
-      <li>Senso-ji, Akihabara, Ryogoku all on the same eastern Tokyo train line — no backtracking</li>
-    </ul></div>
   </div>
 
   <!-- KYOTO -->
@@ -1179,20 +1176,68 @@ function steamFrame(now){
 window.addEventListener('load', steamInit);
 
 
-var SAKURA_THROTTLE_MS = 120000;
+var SAKURA_THROTTLE_MS = 300000;
 function _sakuraRecord(){try{localStorage.setItem('sakuraLastShown',Date.now().toString());}catch(e){}}
 function _sakuraShouldRun(){try{var last=localStorage.getItem('sakuraLastShown');if(!last)return true;return (Date.now()-parseInt(last))>SAKURA_THROTTLE_MS;}catch(e){return true;}}
 function _runStandaloneSakura(){var overlay=document.getElementById('trOverlay');if(!overlay)return;overlay.className='active tr-sakura';sakuraStart();_sakuraRecord();setTimeout(function(){if(overlay)overlay.className='';},3500);}
 function _maybeInitialSakura(){if(_sakuraShouldRun())_runStandaloneSakura();}
 window.addEventListener('load',function(){setTimeout(_maybeInitialSakura,400);});
-document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')_maybeInitialSakura();});
 
 var TAB_TR={schedule:'sakura',explore:'torii',dining:'steam',transport:'train',bookings:'fan',notes:'sumi'};
 var TR_TIMING={sakura:{swap:280,clear:3500},torii:{swap:280,clear:2200},steam:{swap:280,clear:2500},train:{swap:280,clear:2200},sumi:{swap:280,clear:3000},fan:{swap:280,clear:2200},fan:{swap:280,clear:2200}};
 var _trBusy=false;
-var _idleTimer=null;
-function _resetIdleTimer(){if(_idleTimer)clearTimeout(_idleTimer);_idleTimer=setTimeout(function(){var sv=document.getElementById('view-schedule');if(!sv||!sv.classList.contains('active')){showView('schedule');}window.scrollTo(0,0);},300000);}
-['click','touchstart','scroll','keydown','pointerdown'].forEach(function(e){document.addEventListener(e,_resetIdleTimer,{passive:true});});
+
+// === Unified idle/refocus reset system ===
+var IDLE_RESET_MS = 900000;       // 15 min foreground idle → full reset
+var SAKURA_REFOCUS_MS = 300000;   // 5+ min refocus → sakura only (no state change)
+
+var _lastActivity = Date.now();
+var _idleTimer = null;
+
+function _markActivity(){_lastActivity = Date.now();}
+
+function _fullAppReset(){
+  var schedView = document.getElementById('view-schedule');
+  var wasOnSchedule = schedView && schedView.classList.contains('active');
+  // 1. Close all opened activity details (Explore)
+  document.querySelectorAll('.dt-act-detail.open').forEach(function(el){el.classList.remove('open');});
+  // 2. Close all opened dining cards (Dining)
+  document.querySelectorAll('.card-body.open').forEach(function(el){el.classList.remove('open');});
+  // 3. Reset Explore city sub-tab to first (Tokyo I)
+  var cityBtns = document.querySelectorAll('#cityNav .tab-btn');
+  if(cityBtns.length>0 && !cityBtns[0].classList.contains('active')) cityBtns[0].click();
+  // 4. Switch main view to Schedule + play sakura
+  if(wasOnSchedule){
+    window.scrollTo(0,0);
+    _runStandaloneSakura();
+  } else {
+    if(typeof showView==='function') showView('schedule'); // showView triggers sakura when going TO schedule
+  }
+  _markActivity();
+}
+
+function _resetIdleTimer(){
+  _markActivity();
+  if(_idleTimer) clearTimeout(_idleTimer);
+  _idleTimer = setTimeout(_fullAppReset, IDLE_RESET_MS);
+}
+
+['click','touchstart','scroll','keydown','pointerdown'].forEach(function(e){
+  document.addEventListener(e, _resetIdleTimer, {passive:true});
+});
+
+document.addEventListener('visibilitychange', function(){
+  if(document.visibilityState==='visible'){
+    var elapsed = Date.now() - _lastActivity;
+    if(elapsed >= IDLE_RESET_MS){
+      _fullAppReset();
+    } else if(elapsed >= SAKURA_REFOCUS_MS){
+      _runStandaloneSakura();
+    }
+    _resetIdleTimer();
+  }
+});
+
 _resetIdleTimer();
 
 function showView(n){
