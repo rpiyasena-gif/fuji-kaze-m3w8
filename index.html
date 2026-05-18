@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-title" content="Japan Trip">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>Japan 2026 — Family Trip Guide</title>
-<script>try{var _l=localStorage.getItem('sakuraLastShown');if(!_l||(Date.now()-parseInt(_l))>120000){document.documentElement.classList.add('do-fade-in');}}catch(e){}</script>
+<script>try{var _l=localStorage.getItem('sakuraLastShown');if(!_l||(Date.now()-parseInt(_l))>120000){document.documentElement.classList.add('do-fade-in');window.addEventListener('load',function(){setTimeout(function(){document.documentElement.classList.remove('do-fade-in');},1900);});}}catch(e){}</script>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
 @keyframes appInitFade{from{opacity:0;}to{opacity:1;}}
@@ -95,11 +95,11 @@ html{background:var(--paper);font-size:100%;}body{background:var(--paper);color:
 .dt-act-links{display:flex;justify-content:space-between;align-items:center;margin-top:8px;}
 .dietary-overlay{display:none;position:fixed;inset:0;background:#fff;z-index:10010;}
 .dietary-overlay.open{display:flex;align-items:center;justify-content:center;}
-.dietary-overlay-content{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4vmin;padding:max(56px,7vmin) 4vmin 6vmin;width:100%;height:100%;font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Yu Gothic','Meiryo',sans-serif;box-sizing:border-box;}
+.dietary-overlay-content{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4vmin;padding:max(56px,7vmin) max(28px,5vmin,env(safe-area-inset-right)) 6vmin max(28px,5vmin,env(safe-area-inset-left));width:100%;height:100%;font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Yu Gothic','Meiryo',sans-serif;box-sizing:border-box;}
 .dietary-overlay-close{position:fixed;top:max(12px,env(safe-area-inset-top));right:12px;background:#f3f3f3;border:1px solid #ddd;border-radius:50%;width:32px;height:32px;font-size:18px;color:#444;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0;z-index:10011;}
 .dietary-overlay-close:active{background:#e5e5e5;}
 .dietary-block{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1vmin;flex:1;justify-content:center;}
-.dietary-ja-main{font-size:clamp(28px,7vmin,56px);font-weight:700;color:#000;line-height:1.25;}
+.dietary-ja-main{font-size:clamp(36px,9vmin,64px);font-weight:700;color:#000;line-height:1.2;}
 .dietary-en-main{font-size:clamp(13px,2.8vmin,18px);color:#aaa;font-weight:400;margin-bottom:1vmin;}
 .dietary-ja-sub{font-size:clamp(18px,4.5vmin,30px);font-weight:600;color:#333;line-height:1.3;}
 .dietary-en-sub{font-size:clamp(11px,2.2vmin,14px);color:#b8b8b8;font-weight:400;margin-bottom:1.5vmin;}
@@ -1597,19 +1597,19 @@ function toggleAct(id){
   <button class="dietary-overlay-close" onclick="toggleDietaryCard()" aria-label="Close">×</button>
   <div class="dietary-overlay-content">
     <div class="dietary-block">
-      <div class="dietary-ja-main">妻にエビアレルギーがあります</div>
-      <div class="dietary-en-main">Wife: shrimp / prawn allergy</div>
+      <div class="dietary-ja-main">母親にエビアレルギー<br>があります</div>
+      <div class="dietary-en-main">Mother: shrimp / prawn allergy</div>
       <div class="dietary-ja-sub">エビが触れた料理も避けてください</div>
       <div class="dietary-en-sub">Please avoid cross-contamination</div>
       <div class="dietary-icons">
-        <svg class="dietary-person-svg" viewBox="0 0 35 90" xmlns="http://www.w3.org/2000/svg" aria-label="Wife"><path d="M 5 20 Q 2 46 11 48 L 24 48 Q 33 46 30 20 Q 30 12 17.5 11 Q 5 12 5 20 Z" fill="#1a1a1a"/><rect x="14" y="35" width="7" height="6" fill="#d4a574"/><ellipse cx="17.5" cy="25" rx="9.5" ry="11" fill="#d4a574"/><path d="M 8 22 Q 8 13 17.5 12 Q 27 13 27 22 Q 25 16 17.5 15 Q 10 16 8 22 Z" fill="#1a1a1a"/><path d="M 10.5 22 L 14 22" stroke="#1a1a1a" stroke-width="1" stroke-linecap="round"/><path d="M 21 22 L 24.5 22" stroke="#1a1a1a" stroke-width="1" stroke-linecap="round"/><circle cx="12.5" cy="25" r="1.2" fill="#1a1a1a"/><circle cx="22.5" cy="25" r="1.2" fill="#1a1a1a"/><path d="M 15 30 Q 17.5 31.8 20 30" stroke="#7a3050" stroke-width="0.8" fill="none" stroke-linecap="round"/><path d="M 6 41 L 12 41 L 17.5 47 L 23 41 L 29 41 L 29 90 L 6 90 Z" fill="#a13d6e"/><path d="M 12 41 L 17.5 47 L 23 41" stroke="#7a2848" stroke-width="0.6" fill="none"/></svg>
+        <svg class="dietary-person-svg" viewBox="0 0 35 90" xmlns="http://www.w3.org/2000/svg" aria-label="Mother"><path d="M 5 20 Q 2 46 11 48 L 24 48 Q 33 46 30 20 Q 30 12 17.5 11 Q 5 12 5 20 Z" fill="#1a1a1a"/><rect x="14" y="35" width="7" height="6" fill="#d4a574"/><ellipse cx="17.5" cy="25" rx="9.5" ry="11" fill="#d4a574"/><path d="M 8 22 Q 8 13 17.5 12 Q 27 13 27 22 Q 25 16 17.5 15 Q 10 16 8 22 Z" fill="#1a1a1a"/><path d="M 10.5 22 L 14 22" stroke="#1a1a1a" stroke-width="1" stroke-linecap="round"/><path d="M 21 22 L 24.5 22" stroke="#1a1a1a" stroke-width="1" stroke-linecap="round"/><circle cx="12.5" cy="25" r="1.2" fill="#1a1a1a"/><circle cx="22.5" cy="25" r="1.2" fill="#1a1a1a"/><path d="M 15 30 Q 17.5 31.8 20 30" stroke="#7a3050" stroke-width="0.8" fill="none" stroke-linecap="round"/><path d="M 6 41 L 12 41 L 17.5 47 L 23 41 L 29 41 L 29 90 L 6 90 Z" fill="#a13d6e"/><path d="M 12 41 L 17.5 47 L 23 41" stroke="#7a2848" stroke-width="0.6" fill="none"/></svg>
         <span class="dietary-equals">=</span>
         <span class="dietary-forbid"><span class="dietary-food flip-h">🦐</span><svg class="dietary-slash-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="50" cy="50" r="44" stroke="#e83030" stroke-width="5" fill="none"/><line x1="22" y1="22" x2="78" y2="78" stroke="#e83030" stroke-width="5" stroke-linecap="round"/></svg></span>
       </div>
     </div>
     <div class="dietary-divider"></div>
     <div class="dietary-block">
-      <div class="dietary-ja-main">家族全員、牛肉を食べません</div>
+      <div class="dietary-ja-main">家族全員、<br>牛肉を食べません</div>
       <div class="dietary-en-main">Whole family: do not eat beef</div>
       <div class="dietary-ja-sub">牛肉のだし、牛骨スープも含みます</div>
       <div class="dietary-en-sub">Including beef stock and beef bone broth</div>
