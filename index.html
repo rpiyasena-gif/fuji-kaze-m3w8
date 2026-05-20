@@ -32,7 +32,7 @@ html{background:var(--paper);font-size:100%;}body{background:var(--paper);color:
 .view{display:none;}.view.active{display:block;}
 .section-lbl{font-size:0.96rem;letter-spacing:3px;text-transform:uppercase;color:#4a6080;padding:10px 16px 8px;}
 .timeline{margin:0 12px;border-radius:10px;overflow:hidden;border:1px solid var(--mist);background:var(--surface);}
-.tl-row{display:flex;align-items:stretch;border-bottom:1px solid var(--mist);}
+.tl-row{display:flex;align-items:stretch;border-bottom:1px solid var(--mist);cursor:pointer;-webkit-tap-highlight-color:rgba(184,148,108,0.15);}
 .tl-row:last-child{border-bottom:none;}
 .tl-date{width:54px;flex-shrink:0;background:#0d1828;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 4px;}
 .tl-dow{font-size:13px;color:var(--dim);}
@@ -334,21 +334,21 @@ to{stroke-dashoffset:0;}}
 
   <div class="timeline">
     <div class="tl-row transit"><div class="tl-date"><div class="tl-dow">Fri</div><div class="tl-d">22</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Departure</div><div class="tl-note">ATL 6:30 AM → SFO → Tokyo NRT</div><div class="tl-sub">Cross International Date Line · <span style="color:#4a6080;font-style:italic;">We lose a day, there's no way out of it... it's like the maze on the kiddy menu at Benny's... Horsey can't get out!</span></div></div></div>
-    <div class="tl-row"><div class="tl-date"><div class="tl-dow">Sat</div><div class="tl-d">23</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Tokyo I · Arrive</div><span class="tl-badge b-alert">🚇 Get Nikki's Suica at airport (Terminal 1 JR vending machine)</span><div class="tl-note">Private transfer NRT → Asakusa View Hotel</div><div class="tl-sub">Observation Terrace (open til 8pm) · 7-Eleven dinner</div></div></div>
-    <div class="tl-row"><div class="tl-date"><div class="tl-dow">Sun</div><div class="tl-d">24</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Tokyo I</div><div class="tl-note">Senso-ji · Akihabara · Grand Sumo Final Day!</div><div class="tl-sub">Morning temple · Akihabara · quick ticket pickup detour · sumo from ~2:30 PM · chanko nabe dinner</div></div></div>
-    <div class="tl-row"><div class="tl-date"><div class="tl-dow">Mon</div><div class="tl-d">25</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Tokyo I · Day Trip</div><div class="tl-note">Edo Wonderland Nikko</div><div class="tl-sub">Revaty Kinu 105 · 7:30 AM → 9:36 · Spacia X 10 · 16:40 → 18:45 · casual local dinner</div><span class="tl-badge b-alert">🧳 Ship bags to Kyoto tonight</span></div></div>
-    <div class="tl-row transit"><div class="tl-date"><div class="tl-dow">Tue</div><div class="tl-d">26</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">→ Kyoto</div><div class="tl-note">Nozomi 353 · 9:54 AM → Kyoto 12:09 PM</div><div class="tl-sub">Ace Hotel · Nishiki Market · Pokémon Center · Rennosuke ramen dinner</div></div></div>
-    <div class="tl-row"><div class="tl-date"><div class="tl-dow">Wed</div><div class="tl-d">27</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Kyoto</div><div class="tl-note">Fushimi Inari · Kiyomizu-dera · Higashiyama · Gion Matayoshi 6 PM ★★</div><div class="tl-sub">Red torii morning · temple veranda · Sannenzaka stone streets · Gion lanterns at dusk · 2-Michelin kaiseki dinner</div></div></div>
-    <div class="tl-row"><div class="tl-date"><div class="tl-dow">Thu</div><div class="tl-d">28</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Kyoto</div><div class="tl-note">Arashiyama · Tenryu-ji · Yoshimura soba · Kinkaku-ji · Pontocho</div><div class="tl-sub">Bamboo grove · serene pond temple · riverside lunch · Golden Pavilion afternoon · lantern alley dinner</div></div></div>
-    <div class="tl-row"><div class="tl-date"><div class="tl-dow">Fri</div><div class="tl-d">29</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Kyoto → Nara → Osaka</div><div class="tl-note">Nara deer park · Osaka Dotonbori · Kuromon · Castle · Shinsekai</div><div class="tl-sub">Kintetsu Express 8:00 AM · full day · kushikatsu dinner · back ~8:30 PM</div><span class="tl-badge b-alert">🧳 Ship bags to Takayama tonight</span></div></div>
-    <div class="tl-row transit"><div class="tl-date"><div class="tl-dow">Sat</div><div class="tl-d">30</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">→ Takayama</div><div class="tl-note">Nozomi 9:30 AM → Nagoya · Hida 7 10:48 AM → Takayama 1:12 PM</div><div class="tl-sub">Check in Machia Hotel · Sanmachi Suji old town</div></div></div>
-    <div class="tl-row"><div class="tl-date"><div class="tl-dow">Sun</div><div class="tl-d">31</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Takayama</div><div class="tl-note">Sanmachi Suji · Hida Folk Village · old town wander</div><div class="tl-sub">Edo merchant streets · gassho-zukuri farmhouses · optional hike or Shirakawa-go</div><span class="tl-badge b-alert">🧳 Ship bags to Hakone tonight</span></div></div>
-    <div class="tl-row transit"><div class="tl-date"><div class="tl-dow">Mon</div><div class="tl-d">1</div><div class="tl-mon">Jun</div></div><div class="tl-content"><div class="tl-city">→ Hakone</div><div class="tl-note">Hida 6 · 9:36 AM → Nagoya 12:04 PM · Kodama 12:38 PM → Odawara 2:42 PM</div><div class="tl-sub">Buy Hakone Free Pass · Tozan Railway to Gora · Hotel Indigo · Onsen</div></div></div>
-    <div class="tl-row"><div class="tl-date"><div class="tl-dow">Tue</div><div class="tl-d">2</div><div class="tl-mon">Jun</div></div><div class="tl-content"><div class="tl-city">Hakone</div><div class="tl-note">Owakudani Ropeway · Onsen · Relax</div><div class="tl-sub">Volcanic valley · Fuji view attempt</div><span class="tl-badge b-alert">🧳 Ship bags to Tokyo tonight</span></div></div>
-    <div class="tl-row transit"><div class="tl-date"><div class="tl-dow">Wed</div><div class="tl-d">3</div><div class="tl-mon">Jun</div></div><div class="tl-content"><div class="tl-city">→ Tokyo II</div><div class="tl-note">Kodama 9:14 AM → Tokyo 9:48 AM · Imperial Palace · Florilège 6 PM ★★</div><div class="tl-sub">Check in Tokyo Edition Toranomon · Florilège confirmed</div></div></div>
-    <div class="tl-row"><div class="tl-date"><div class="tl-dow">Thu</div><div class="tl-d">4</div><div class="tl-mon">Jun</div></div><div class="tl-content"><div class="tl-city">Tokyo II</div><div class="tl-note">teamLab 9:30 AM · Meiji Jingu · Harajuku · Shibuya Sky · Shinjuku</div><div class="tl-sub">Vegan Ramen UZU · Gong Cha boba · vintage shopping · Nintendo Tokyo · sunset rooftop · neon streets</div></div></div>
-    <div class="tl-row"><div class="tl-date"><div class="tl-dow">Fri</div><div class="tl-d">5</div><div class="tl-mon">Jun</div></div><div class="tl-content"><div class="tl-city">Tokyo II</div><div class="tl-note">Tsukiji sushi workshop · Ginza shopping · casual dinner</div><div class="tl-sub">Morning workshop + lunch · Mikimoto · izakaya dinner</div></div></div>
-    <div class="tl-row depart"><div class="tl-date"><div class="tl-dow">Sat</div><div class="tl-d">6</div><div class="tl-mon">Jun</div></div><div class="tl-content"><div class="tl-city">Departure</div><div class="tl-note">HND 10:20 AM → IAD → ATL 2:34 PM</div><div class="tl-sub">Leave hotel 7:00 AM · Jumbo Taxi to HND (Terminal 3) · IAD layover 2h 30m</div></div></div>
+    <div class="tl-row" onclick="goToExploreDay('tokyo1','day-may-23')"><div class="tl-date"><div class="tl-dow">Sat</div><div class="tl-d">23</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Tokyo I · Arrive</div><span class="tl-badge b-alert">🚇 Get Nikki's Suica at airport (Terminal 1 JR vending machine)</span><div class="tl-note">Private transfer NRT → Asakusa View Hotel</div><div class="tl-sub">Observation Terrace (open til 8pm) · 7-Eleven dinner</div></div></div>
+    <div class="tl-row" onclick="goToExploreDay('tokyo1','day-may-24')"><div class="tl-date"><div class="tl-dow">Sun</div><div class="tl-d">24</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Tokyo I</div><div class="tl-note">Senso-ji · Akihabara · Grand Sumo Final Day!</div><div class="tl-sub">Morning temple · Akihabara · quick ticket pickup detour · sumo from ~2:30 PM · chanko nabe dinner</div></div></div>
+    <div class="tl-row" onclick="goToExploreDay('tokyo1','day-may-25')"><div class="tl-date"><div class="tl-dow">Mon</div><div class="tl-d">25</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Tokyo I · Day Trip</div><div class="tl-note">Edo Wonderland Nikko</div><div class="tl-sub">Revaty Kinu 105 · 7:30 AM → 9:36 · Spacia X 10 · 16:40 → 18:45 · casual local dinner</div><span class="tl-badge b-alert">🧳 Ship bags to Kyoto tonight</span></div></div>
+    <div class="tl-row transit" onclick="goToExploreDay('kyoto','day-may-26')"><div class="tl-date"><div class="tl-dow">Tue</div><div class="tl-d">26</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">→ Kyoto</div><div class="tl-note">Nozomi 353 · 9:54 AM → Kyoto 12:09 PM</div><div class="tl-sub">Ace Hotel · Nishiki Market · Pokémon Center · Rennosuke ramen dinner</div></div></div>
+    <div class="tl-row" onclick="goToExploreDay('kyoto','day-may-27')"><div class="tl-date"><div class="tl-dow">Wed</div><div class="tl-d">27</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Kyoto</div><div class="tl-note">Fushimi Inari · Kiyomizu-dera · Higashiyama · Gion Matayoshi 6 PM ★★</div><div class="tl-sub">Red torii morning · temple veranda · Sannenzaka stone streets · Gion lanterns at dusk · 2-Michelin kaiseki dinner</div></div></div>
+    <div class="tl-row" onclick="goToExploreDay('kyoto','day-may-28')"><div class="tl-date"><div class="tl-dow">Thu</div><div class="tl-d">28</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Kyoto</div><div class="tl-note">Arashiyama · Tenryu-ji · Yoshimura soba · Kinkaku-ji · Pontocho</div><div class="tl-sub">Bamboo grove · serene pond temple · riverside lunch · Golden Pavilion afternoon · lantern alley dinner</div></div></div>
+    <div class="tl-row" onclick="goToExploreDay('kyoto','day-may-29')"><div class="tl-date"><div class="tl-dow">Fri</div><div class="tl-d">29</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Kyoto → Nara → Osaka</div><div class="tl-note">Nara deer park · Osaka Dotonbori · Kuromon · Castle · Shinsekai</div><div class="tl-sub">Kintetsu Express 8:00 AM · full day · kushikatsu dinner · back ~8:30 PM</div><span class="tl-badge b-alert">🧳 Ship bags to Takayama tonight</span></div></div>
+    <div class="tl-row transit" onclick="goToExploreDay('takayama','day-may-30')"><div class="tl-date"><div class="tl-dow">Sat</div><div class="tl-d">30</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">→ Takayama</div><div class="tl-note">Nozomi 9:30 AM → Nagoya · Hida 7 10:48 AM → Takayama 1:12 PM</div><div class="tl-sub">Check in Machia Hotel · Sanmachi Suji old town</div></div></div>
+    <div class="tl-row" onclick="goToExploreDay('takayama','day-may-31')"><div class="tl-date"><div class="tl-dow">Sun</div><div class="tl-d">31</div><div class="tl-mon">May</div></div><div class="tl-content"><div class="tl-city">Takayama</div><div class="tl-note">Sanmachi Suji · Hida Folk Village · old town wander</div><div class="tl-sub">Edo merchant streets · gassho-zukuri farmhouses · optional hike or Shirakawa-go</div><span class="tl-badge b-alert">🧳 Ship bags to Hakone tonight</span></div></div>
+    <div class="tl-row transit" onclick="goToExploreDay('hakone','day-jun-1')"><div class="tl-date"><div class="tl-dow">Mon</div><div class="tl-d">1</div><div class="tl-mon">Jun</div></div><div class="tl-content"><div class="tl-city">→ Hakone</div><div class="tl-note">Hida 6 · 9:36 AM → Nagoya 12:04 PM · Kodama 12:38 PM → Odawara 2:42 PM</div><div class="tl-sub">Buy Hakone Free Pass · Tozan Railway to Gora · Hotel Indigo · Onsen</div></div></div>
+    <div class="tl-row" onclick="goToExploreDay('hakone','day-jun-2')"><div class="tl-date"><div class="tl-dow">Tue</div><div class="tl-d">2</div><div class="tl-mon">Jun</div></div><div class="tl-content"><div class="tl-city">Hakone</div><div class="tl-note">Owakudani Ropeway · Onsen · Relax</div><div class="tl-sub">Volcanic valley · Fuji view attempt</div><span class="tl-badge b-alert">🧳 Ship bags to Tokyo tonight</span></div></div>
+    <div class="tl-row transit" onclick="goToExploreDay('tokyo2','day-jun-3')"><div class="tl-date"><div class="tl-dow">Wed</div><div class="tl-d">3</div><div class="tl-mon">Jun</div></div><div class="tl-content"><div class="tl-city">→ Tokyo II</div><div class="tl-note">Kodama 9:14 AM → Tokyo 9:48 AM · Imperial Palace · Florilège 6 PM ★★</div><div class="tl-sub">Check in Tokyo Edition Toranomon · Florilège confirmed</div></div></div>
+    <div class="tl-row" onclick="goToExploreDay('tokyo2','day-jun-4')"><div class="tl-date"><div class="tl-dow">Thu</div><div class="tl-d">4</div><div class="tl-mon">Jun</div></div><div class="tl-content"><div class="tl-city">Tokyo II</div><div class="tl-note">teamLab 9:30 AM · Meiji Jingu · Harajuku · Shibuya Sky · Shinjuku</div><div class="tl-sub">Vegan Ramen UZU · Gong Cha boba · vintage shopping · Nintendo Tokyo · sunset rooftop · neon streets</div></div></div>
+    <div class="tl-row" onclick="goToExploreDay('tokyo2','day-jun-5')"><div class="tl-date"><div class="tl-dow">Fri</div><div class="tl-d">5</div><div class="tl-mon">Jun</div></div><div class="tl-content"><div class="tl-city">Tokyo II</div><div class="tl-note">Tsukiji sushi workshop · Ginza shopping · casual dinner</div><div class="tl-sub">Morning workshop + lunch · Mikimoto · izakaya dinner</div></div></div>
+    <div class="tl-row depart" onclick="goToExploreDay('tokyo2','day-jun-6')"><div class="tl-date"><div class="tl-dow">Sat</div><div class="tl-d">6</div><div class="tl-mon">Jun</div></div><div class="tl-content"><div class="tl-city">Departure</div><div class="tl-note">HND 10:20 AM → IAD → ATL 2:34 PM</div><div class="tl-sub">Leave hotel 7:00 AM · Jumbo Taxi to HND (Terminal 3) · IAD layover 2h 30m</div></div></div>
   </div>
 </div>
 
@@ -365,7 +365,7 @@ to{stroke-dashoffset:0;}}
   <!-- TOKYO I -->
   <div class="city-section active" id="city-tokyo1">
     <div class="city-hdr"><div style="display:flex;justify-content:space-between;align-items:flex-start;"><div><div class="city-tag">May 23–26 · 3 nights</div><div class="city-name">Tokyo — Asakusa</div><div class="city-meta">Asakusa View Hotel Annex Roku · Free lounge 3–10pm · Skytree views</div><a href="https://www.japan-guide.com/e/e2164.html" target="_blank" class="city-jg-pill">📘 Japan Guide</a></div><a href="#" onclick="window.location.href='https://maps.google.com/?q=Asakusa+View+Hotel+Annex+Roku+Tokyo';return false;" style="font-size:22px;text-decoration:none;line-height:1;flex-shrink:0;">📍</a></div></div>
-    <div class="section-lbl">Saturday May 23 · First Night</div>
+    <div class="section-lbl" id="day-may-23">Saturday May 23 · First Night</div>
     <div class="detail-table">
       <div class="dt-row reminder"><div class="dt-main"><div class="dt-time">🛬</div><div class="dt-text">⚠️ Get Nikki's Suica at JR East vending machine inside Terminal 1 · grab it before meeting your driver in arrivals · load ¥5,000</div></div></div>
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">~4:30 PM</div><div class="dt-text"><strong>Private transfer</strong> · NRT Terminal 1 → Asakusa View Hotel Annex Roku · Klook ZKT990565 · Toyota Alphard/Honda Odyssey · 4 pax · driver tracks flight · 90 min free wait</div></div></div>
@@ -378,7 +378,7 @@ to{stroke-dashoffset:0;}}
       <div class="dt-row"><div class="dt-main"><div class="dt-time">Note</div><div class="dt-text">Hotel has free lounge on 10th floor 3–10pm with Skytree views — great backup if terrace is closed or you're too tired</div></div></div>
     </div>
 
-    <div class="section-lbl">Sunday May 24 · Sumo Day!</div>
+    <div class="section-lbl" id="day-may-24">Sunday May 24 · Sumo Day!</div>
     <div class="detail-table">
       <div class="dt-row"><div class="dt-main"><div class="dt-time">🌅 ~4:15 AM</div><div class="dt-text"><strong>Sunrise Senso-ji</strong> · if you're up (likely, first morning, 13-hr time shift) · 4:30 AM sunrise at the temple · empty, misty, gorgeous · 5 min from hotel · back by 6 AM</div></div></div>
       <div class="dt-row"><div class="dt-main"><div class="dt-time">7:00 AM</div><div class="dt-text">Wake up · breakfast · jet lag works in your favour — you'll be up naturally</div></div></div>
@@ -410,7 +410,7 @@ to{stroke-dashoffset:0;}}
       <div class="dt-row dining"><div class="dt-main"><div class="dt-time">🌅</div><div class="dt-text"><strong>Chanko nabe dinner</strong> · Ryogoku · sumo hot pot · walk-in<button class="act-btn dining" onclick="goToDining('din-may24-chanko')">🍜 Dining →</button></div></div></div>
     </div>
 
-    <div class="section-lbl">Monday May 25 · Edo Wonderland Day</div>
+    <div class="section-lbl" id="day-may-25">Monday May 25 · Edo Wonderland Day</div>
     <div class="detail-table">
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">7:00 AM</div><div class="dt-text">Leave hotel · walk to Tobu Asakusa Station<a href="#" onclick="window.location.href='https://www.google.com/maps/place/Tobu+Asakusa+Station/@35.7106,139.7984,17z';return false;" class="learn-more" style="margin:0 2px;color:#4A8AC9;text-decoration:none;">📍</a> (12 min)</div></div></div>
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">7:30 AM</div><div class="dt-text"><strong>Revaty Kinu 105</strong> · Asakusa → Kinugawa Onsen <button class="act-btn travel" onclick="goToTravel('tr-may25')">🚄 Travel →</button></div></div></div>
@@ -430,7 +430,7 @@ to{stroke-dashoffset:0;}}
   <!-- KYOTO -->
   <div class="city-section" id="city-kyoto">
     <div class="city-hdr"><div style="display:flex;justify-content:space-between;align-items:flex-start;"><div><div class="city-tag">May 26–30 · 4 nights</div><div class="city-name">Kyoto</div><div class="city-meta">Ace Hotel Kyoto · Cultural heartland of Japan</div><a href="https://www.japan-guide.com/e/e2158.html" target="_blank" class="city-jg-pill">📘 Japan Guide</a></div><a href="#" onclick="window.location.href='https://maps.google.com/?q=Ace+Hotel+Kyoto+Japan';return false;" style="font-size:22px;text-decoration:none;line-height:1;flex-shrink:0;">📍</a></div></div>
-    <div class="section-lbl">Tuesday May 26 · Arrival</div>
+    <div class="section-lbl" id="day-may-26">Tuesday May 26 · Arrival</div>
     <div class="detail-table">
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">~8:45 AM</div><div class="dt-text">Leave Asakusa View Hotel · taxi (recommended) or subway to Tokyo Station<a href="#" onclick="window.location.href='https://www.google.com/maps/place/Tokyo+Station/@35.68098,139.767057,17z';return false;" class="learn-more" style="margin:0 2px;color:#4A8AC9;text-decoration:none;">📍</a> (~20 min)</div></div></div>
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">9:54 AM</div><div class="dt-text"><strong>Nozomi 353</strong> · Tokyo → Kyoto (arrive 12:09 PM) <button class="act-btn travel" onclick="goToTravel('tr-may26')">🚄 Travel →</button></div></div></div>
@@ -448,7 +448,7 @@ to{stroke-dashoffset:0;}}
       <div class="dt-row"><div class="dt-main"><div class="dt-time">~7:30 PM</div><div class="dt-text">Back at Ace Hotel · early night before 7 AM Fushimi Inari start</div></div></div>
     </div>
 
-    <div class="section-lbl">Wednesday May 27 · Fushimi Inari + Kiyomizu + Higashiyama + Gion Matayoshi</div>
+    <div class="section-lbl" id="day-may-27">Wednesday May 27 · Fushimi Inari + Kiyomizu + Higashiyama + Gion Matayoshi</div>
     <div class="detail-table">
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">7:00 AM</div><div class="dt-text">Leave Ace Hotel · subway Karasuma-Oike<a href="#" onclick="window.location.href='https://maps.google.com/?q=Karasuma+Oike+Station+Kyoto';return false;" class="learn-more" style="margin:0 2px;color:#4A8AC9;text-decoration:none;">📍</a> → Kyoto Station (6 min · Karasuma Line)</div></div></div>
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">7:10 AM</div><div class="dt-text">JR Nara Line → JR Inari (5 min · Suica tap)</div></div></div>
@@ -481,7 +481,7 @@ to{stroke-dashoffset:0;}}
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">~9:00 PM</div><div class="dt-text">Taxi → Ace Hotel · ~10 min</div></div></div>
     </div>
 
-    <div class="section-lbl">Thursday May 28 · Arashiyama + Kinkaku-ji</div>
+    <div class="section-lbl" id="day-may-28">Thursday May 28 · Arashiyama + Kinkaku-ji</div>
     <div class="detail-table">
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">7:30 AM</div><div class="dt-text">Leave Ace Hotel · subway Karasuma-Oike<a href="#" onclick="window.location.href='https://maps.google.com/?q=Karasuma+Oike+Station+Kyoto';return false;" class="learn-more" style="margin:0 2px;color:#4A8AC9;text-decoration:none;">📍</a> → Kyoto Station (6 min · Karasuma Line)</div></div></div>
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">7:45 AM</div><div class="dt-text">JR Sagano Line → Saga-Arashiyama (~15 min · Suica tap)</div></div></div>
@@ -509,7 +509,7 @@ to{stroke-dashoffset:0;}}
       <div class="dt-row dining"><div class="dt-main"><div class="dt-time">7:00 PM</div><div class="dt-text"><strong>Pontocho dinner</strong> · walk-in · casual · pick a spot that calls you<button class="act-btn dining" onclick="goToDining('din-may28-pontocho')">🍜 Dining →</button></div></div></div>
     </div>
 
-    <div class="section-lbl">Friday May 29 · Nara + Osaka Full Day <a href="https://www.japan-guide.com/e/e2157.html" target="_blank" class="city-jg-pill" style="margin-top:0;margin-left:8px;vertical-align:middle;">📘 Osaka</a></div>
+    <div class="section-lbl" id="day-may-29">Friday May 29 · Nara + Osaka Full Day <a href="https://www.japan-guide.com/e/e2157.html" target="_blank" class="city-jg-pill" style="margin-top:0;margin-left:8px;vertical-align:middle;">📘 Osaka</a></div>
     <div class="detail-table">
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">7:30 AM</div><div class="dt-text">Leave Ace Hotel · subway Karasuma-Oike<a href="#" onclick="window.location.href='https://maps.google.com/?q=Karasuma+Oike+Station+Kyoto';return false;" class="learn-more" style="margin:0 2px;color:#4A8AC9;text-decoration:none;">📍</a> → Kyoto Station (6 min · Karasuma Line)</div></div></div>
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">8:00 AM</div><div class="dt-text"><strong>Kintetsu Express</strong> · Kyoto → Nara (~45 min) <button class="act-btn travel" onclick="goToTravel('tr-may29')">🚄 Travel →</button></div></div></div>
@@ -543,13 +543,13 @@ to{stroke-dashoffset:0;}}
   <!-- TAKAYAMA -->
   <div class="city-section" id="city-takayama">
     <div class="city-hdr"><div style="display:flex;justify-content:space-between;align-items:flex-start;"><div><div class="city-tag">May 30 – Jun 1 · 2 nights</div><div class="city-name">Takayama</div><div class="city-meta">Machia Hotel · Japanese Alps · "Little Kyoto of the Alps"</div><a href="https://www.japan-guide.com/e/e5900.html" target="_blank" class="city-jg-pill">📘 Japan Guide</a></div><a href="#" onclick="window.location.href='https://maps.google.com/?q=Machia+Hotel+Takayama+Japan';return false;" style="font-size:22px;text-decoration:none;line-height:1;flex-shrink:0;">📍</a></div></div>
-    <div class="section-lbl">Saturday May 30 · Arrival</div>
+    <div class="section-lbl" id="day-may-30">Saturday May 30 · Arrival</div>
     <div class="detail-table">
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">9:30 AM</div><div class="dt-text"><strong>Nozomi 116 + Hida 7</strong> · Kyoto → Nagoya → Takayama (arrive 1:12 PM · scenic Alpine ride on Hida) <button class="act-btn travel" onclick="goToTravel('tr-may30')">🚄 Travel →</button></div></div></div>
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">1:12 PM</div><div class="dt-text">Arrive Takayama · 9 min walk or 3 min taxi to Machia Hotel · check in · bags already waiting</div></div></div>
       <div class="dt-row dining"><div class="dt-main"><div class="dt-time">🌅</div><div class="dt-text">Takayama dinner · local Hida beef for Rohan!<button class="act-btn dining" onclick="goToDining('din-may30-takayama')">🍜 Dining →</button></div></div></div>
     </div>
-    <div class="section-lbl">Sunday May 31 · Free Day · Takayama at Your Pace</div>
+    <div class="section-lbl" id="day-may-31">Sunday May 31 · Free Day · Takayama at Your Pace</div>
     <div class="detail-table">
       <div class="dt-row"><div class="dt-main"><div class="dt-time">Daytime</div><div class="dt-text">Whatever moves you today — <strong>pick from the Activity Options menu below</strong>.</div></div></div>
       <div class="dt-row dining"><div class="dt-main"><div class="dt-time">🌅</div><div class="dt-text">Takayama dinner · night 2 in old town<button class="act-btn dining" onclick="goToDining('din-may31-takayama')">🍜 Dining →</button></div></div></div>
@@ -582,7 +582,7 @@ to{stroke-dashoffset:0;}}
   <!-- HAKONE -->
   <div class="city-section" id="city-hakone">
     <div class="city-hdr"><div style="display:flex;justify-content:space-between;align-items:flex-start;"><div><div class="city-tag">Jun 1–3 · 2 nights</div><div class="city-name">Hakone</div><div class="city-meta">Hotel Indigo Hakone Gora · Volcanic mountains · Onsen country</div><a href="https://www.japan-guide.com/e/e5200.html" target="_blank" class="city-jg-pill">📘 Japan Guide</a></div><a href="#" onclick="window.location.href='https://maps.google.com/?q=Hotel+Indigo+Hakone+Gora,+924-1+Kigawashimo,+Hakone,+Ashigarashimo+District,+Kanagawa+250-0408';return false;" style="font-size:22px;text-decoration:none;line-height:1;flex-shrink:0;">📍</a></div></div>
-    <div class="section-lbl">Monday Jun 1 · Arrival</div>
+    <div class="section-lbl" id="day-jun-1">Monday Jun 1 · Arrival</div>
     <div class="detail-table">
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">9:36 AM</div><div class="dt-text"><strong>Hida 6 + Kodama</strong> · Takayama → Nagoya → Odawara (arrive 2:42 PM) <button class="act-btn travel" onclick="goToTravel('tr-jun1')">🚄 Travel →</button></div></div></div>
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">2:42 PM</div><div class="dt-text">Arrive Odawara Station</div></div></div>
@@ -599,7 +599,7 @@ to{stroke-dashoffset:0;}}
       <div class="dt-row reminder"><div class="dt-main"><div class="dt-time">🌅</div><div class="dt-text">Tomorrow Fuji sunrise possibility · ask concierge to check forecast + pre-arrange Daikanzan taxi if promising · <strong>details in Options card below</strong></div></div></div>
     </div>
 
-    <div class="section-lbl">Tuesday Jun 2 · Free Day · Hakone at Your Pace</div>
+    <div class="section-lbl" id="day-jun-2">Tuesday Jun 2 · Free Day · Hakone at Your Pace</div>
     <div class="detail-table">
       <div class="dt-row"><div class="dt-main"><div class="dt-time">Daytime</div><div class="dt-text">The relaxation leg — pick what restores you from the <strong>Activity Options menu below</strong>.</div></div></div>
       <div class="dt-row dining"><div class="dt-main"><div class="dt-time">6:30 PM</div><div class="dt-text"><strong>Riverside Kitchen &amp; Bar</strong> · Hotel Indigo Gora · 4 guests · ✓ Confirmed (27PPJE)<button class="act-btn dining" onclick="goToDining('din-jun2-hakone')">🍜 Dining →</button></div></div></div>
@@ -636,7 +636,7 @@ to{stroke-dashoffset:0;}}
   <div class="city-section" id="city-tokyo2">
     <div class="city-hdr"><div style="display:flex;justify-content:space-between;align-items:flex-start;"><div><div class="city-tag">Jun 3–6 · 3 nights</div><div class="city-name">Tokyo — Toranomon</div><div class="city-meta">Tokyo Edition Toranomon · Modern Tokyo · Tokyo Tower views</div><a href="https://www.japan-guide.com/e/e2164.html" target="_blank" class="city-jg-pill">📘 Japan Guide</a></div><a href="#" onclick="window.location.href='https://maps.google.com/?q=Tokyo+Edition+Toranomon+Japan';return false;" style="font-size:22px;text-decoration:none;line-height:1;flex-shrink:0;">📍</a></div></div>
 
-    <div class="section-lbl">Wednesday Jun 3 · Arrival + Florilège</div>
+    <div class="section-lbl" id="day-jun-3">Wednesday Jun 3 · Arrival + Florilège</div>
     <div class="detail-table">
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">8:00 AM</div><div class="dt-text">Leave hotel · taxi to Gora Station<a href="#" onclick="window.location.href='https://maps.google.com/?q=Gora+Station+Hakone';return false;" class="learn-more" style="margin:0 2px;color:#4A8AC9;text-decoration:none;">📍</a> (~10 min, ¥1,500)</div></div></div>
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">8:30 AM</div><div class="dt-text"><strong>Hakone Tozan Railway</strong> · Gora → Odawara (~45 min) <button class="act-btn travel" onclick="goToTravel('tr-jun3')">🚄 Travel →</button></div></div></div>
@@ -651,7 +651,7 @@ to{stroke-dashoffset:0;}}
       <div class="dt-row dining"><div class="dt-main"><div class="dt-time">6:00 PM</div><div class="dt-text"><strong>Florilège ✓</strong> · Minami-Aoyama · 6 PM confirmed<button class="act-btn dining" onclick="goToDining('din-jun3-florilege')">🍜 Dining →</button></div></div></div>
     </div>
 
-    <div class="section-lbl">Thursday Jun 4 · teamLab Day</div>
+    <div class="section-lbl" id="day-jun-4">Thursday Jun 4 · teamLab Day</div>
     <div class="detail-table">
       <div class="dt-row"><div class="dt-main"><div class="dt-time">8:00 AM</div><div class="dt-text">Breakfast at hotel</div></div></div>
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">8:45 AM</div><div class="dt-text">Subway to Shin-Toyosu (~25 min) · wear slip-on shoes!<a href="#" onclick="window.location.href='https://maps.google.com/?saddr=Toranomon+Station+Tokyo&daddr=Shin-Toyosu+Station+Tokyo&dirflg=r';return false;" class="learn-more" style="margin-left:4px;color:#4A8AC9;">🚆 Transit times</a></div></div></div>
@@ -684,7 +684,7 @@ to{stroke-dashoffset:0;}}
       <div class="dt-row dining"><div class="dt-main"><div class="dt-time">~8:00 PM</div><div class="dt-text"><strong>Shinjuku dinner</strong> · Omoide Yokocho area · walk-in<button class="act-btn dining" onclick="goToDining('din-jun4-shinjuku')">🍜 Dining →</button></div></div></div>
     </div>
 
-    <div class="section-lbl">Friday Jun 5 · Tsukiji · Ginza · Dinner</div>
+    <div class="section-lbl" id="day-jun-5">Friday Jun 5 · Tsukiji · Ginza · Dinner</div>
     <div class="detail-table">
       <div class="dt-row dining"><div class="dt-main"><div class="dt-time">10:00 AM</div><div class="dt-text"><strong>Tsukiji sushi workshop</strong> · hands-on lunch · book soon<button class="act-btn dining" onclick="goToDining('din-jun5-tsukiji')">🍜 Dining →</button></div></div></div>
       <div class="dt-row"><div class="dt-main"><div class="dt-time">12:30 PM</div><div class="dt-text">Browse Tsukiji Outer Market stalls · walk to Ginza (10 min)</div></div></div>
@@ -697,7 +697,7 @@ to{stroke-dashoffset:0;}}
       <div class="dt-row reminder"><div class="dt-main"><div class="dt-time">🌙</div><div class="dt-text">🚕 Ask hotel concierge to arrange a Jumbo Taxi for 7:00 AM tomorrow to Haneda Airport — Terminal 3 (International) · full luggage for 4 · confirm pickup at hotel entrance</div></div></div>
     </div>
 
-    <div class="section-lbl">Saturday Jun 6 · Departure</div>
+    <div class="section-lbl" id="day-jun-6">Saturday Jun 6 · Departure</div>
     <div class="detail-table">
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">7:00 AM</div><div class="dt-text"><strong>Jumbo Taxi</strong> · Tokyo Edition Toranomon → Haneda HND Terminal 3 (~30 min, ~¥8,000–12,000) · arranged via concierge evening of Jun 5</div></div></div>
       <div class="dt-row travel"><div class="dt-main"><div class="dt-time">10:20 AM</div><div class="dt-text">Depart HND → IAD (2h 30m layover) → Atlanta</div></div></div>
@@ -1333,6 +1333,7 @@ function _captureExploreState(){var ev=document.getElementById('view-explore');i
 function _maybeRestoreExploreState(){if(!_exploreReturnState)return;if(Date.now()-_exploreReturnState.timestamp>60000){_exploreReturnState=null;return;}var savedScroll=_exploreReturnState.scroll;var savedCity=_exploreReturnState.cityId;_exploreReturnState=null;if(savedCity){var cur=document.querySelector('.city-section.active');if(!cur||cur.id!=='city-'+savedCity){var btns=document.querySelectorAll('#cityNav .tab-btn');for(var i=0;i<btns.length;i++){var oc=btns[i].getAttribute('onclick');if(oc&&oc.indexOf("'"+savedCity+"'")!==-1){btns[i].click();break;}}}}setTimeout(function(){window.scrollTo(0,savedScroll);},100);}
 function goToTravel(id){_captureExploreState();showView('transport');setTimeout(function(){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},1600);}
 function goToDining(id){_captureExploreState();showView('dining');setTimeout(function(){var el=document.getElementById(id);if(el){document.querySelectorAll('.card-body.open').forEach(function(b){b.classList.remove('open');});var body=el.querySelector('.card-body');if(body)body.classList.add('open');el.scrollIntoView({behavior:'smooth',block:'start'});}},1600);}
+function goToExploreDay(cityId,dayId){showView('explore');setTimeout(function(){var btns=document.querySelectorAll('#cityNav .tab-btn');for(var i=0;i<btns.length;i++){var oc=btns[i].getAttribute('onclick');if(oc&&oc.indexOf("'"+cityId+"'")!==-1){btns[i].click();break;}}var el=document.getElementById(dayId);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},1600);}
 function toggleCard(hd){
   var b=hd.nextElementSibling;
   var isOpen=b&&b.classList.contains('open');
